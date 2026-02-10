@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{6C87A820-37DC-4ED4-AACA-700AEBDC3C5C}" SchemaVersion="133">
+	<SoundBanks>
+		<WorkUnit Name="Default Work Unit" ID="{6C87A820-37DC-4ED4-AACA-700AEBDC3C5C}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="Main" ID="{0AD59BD7-E00D-49A1-A099-A841A3CCDB80}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Default Work Unit" ID="{5A00A353-F767-46AF-959F-BA52DB60BF41}" WorkUnitID="{5A00A353-F767-46AF-959F-BA52DB60BF41}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="StartHookSound" ID="{488A0970-F880-4EE2-84DC-6ABAF1A73890}" WorkUnitID="{5A00A353-F767-46AF-959F-BA52DB60BF41}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="StopHookSound" ID="{627B9F77-62D7-4FB6-88CA-6E1DBF5B59DB}" WorkUnitID="{5A00A353-F767-46AF-959F-BA52DB60BF41}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundBanks>
+</WwiseDocument>

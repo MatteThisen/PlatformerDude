@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{131B3A5B-C5FA-49A7-86C3-D238FAB31341}" SchemaVersion="133">
+	<Containers>
+		<WorkUnit Name="Default Work Unit" ID="{131B3A5B-C5FA-49A7-86C3-D238FAB31341}" PersistMode="Standalone">
+			<ChildrenList>
+				<Sound Name="Tone" ID="{13353006-651B-484C-AD66-1FD1F98FB450}" ShortID="169324789">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F499122E-DA56-4C8A-9212-64AA945C95AA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0DA03D61-28E4-4D17-AC20-2517DD209FA6}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<SourcePlugin Name="Synth One" ID="{4E84455E-881E-4597-B981-8A57A565E833}" ShortID="847839499" PluginName="Wwise Synth One" CompanyID="0" PluginID="148">
+							<PropertyList>
+								<Property Name="BaseFrequency" Type="Real32" Value="423"/>
+							</PropertyList>
+							<ObjectLists>
+								<ObjectList Name="RTPC">
+									<RTPC Name="" ID="{646396AA-2F7A-4B62-8980-D3A5F4991449}" ShortID="316412070">
+										<PropertyList>
+											<Property Name="PropertyName" Type="string" Value="OutputLevel"/>
+										</PropertyList>
+										<ReferenceList>
+											<Reference Name="ControlInput">
+												<Custom>
+													<ModulatorEnvelope Name="Modulator Envelope (Custom)" ID="{C759CF32-0B7C-4AB9-BB9D-FD255CC4D76A}" ShortID="535459393">
+														<PropertyList>
+															<Property Name="EnvelopeAttackTime" Type="Real64" Value="0.01"/>
+														</PropertyList>
+													</ModulatorEnvelope>
+												</Custom>
+											</Reference>
+											<Reference Name="Curve">
+												<Custom>
+													<Curve Name="" ID="{7D36666C-0D3F-4807-B8CF-29B50554D70D}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-96</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>0</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</Custom>
+											</Reference>
+										</ReferenceList>
+									</RTPC>
+									<RTPC Name="" ID="{D5E8EAAA-7E46-4602-B442-95AE6FBECC1F}" ShortID="800328865">
+										<PropertyList>
+											<Property Name="PropertyName" Type="string" Value="BaseFrequency"/>
+										</PropertyList>
+										<ReferenceList>
+											<Reference Name="ControlInput">
+												<ObjectRef Name="CableValue" ID="{F448ABBB-5F67-4FEA-9F33-36E8BA976C34}" WorkUnitID="{2291A8A0-680A-45DB-97FB-319A7767B7E2}"/>
+											</Reference>
+											<Reference Name="Curve">
+												<Custom>
+													<Curve Name="" ID="{21E95614-80C4-4525-98A5-5726EB972433}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="5"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>20</XPos>
+																<YPos>1000</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>10000</XPos>
+																<YPos>11171.64572</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</Custom>
+											</Reference>
+										</ReferenceList>
+									</RTPC>
+								</ObjectList>
+							</ObjectLists>
+							<Language>SFX</Language>
+						</SourcePlugin>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Synth One" ID="{4E84455E-881E-4597-B981-8A57A565E833}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="Sine" ID="{8CCAD227-E76F-4339-B17F-A4AD90385B56}" ShortID="173483287">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F499122E-DA56-4C8A-9212-64AA945C95AA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0DA03D61-28E4-4D17-AC20-2517DD209FA6}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<SourcePlugin Name="Sine" ID="{909F8461-3308-410D-A73E-4ACC4091BEFF}" ShortID="511001677" PluginName="Wwise Sine" CompanyID="0" PluginID="100">
+							<PropertyList>
+								<Property Name="SineDuration" Type="Real32" Value="3"/>
+								<Property Name="SineFrequency" Type="Real32" Value="261"/>
+							</PropertyList>
+							<Language>SFX</Language>
+						</SourcePlugin>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Sine" ID="{909F8461-3308-410D-A73E-4ACC4091BEFF}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="Sine_01" ID="{0A82BCD0-67E1-40B7-8541-713464D025B9}" ShortID="24609039">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F499122E-DA56-4C8A-9212-64AA945C95AA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0DA03D61-28E4-4D17-AC20-2517DD209FA6}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<SourcePlugin Name="Sine" ID="{7C793E7B-E15A-48AA-BFAC-CCB2C8D261AF}" ShortID="988970608" PluginName="Wwise Sine" CompanyID="0" PluginID="100">
+							<PropertyList>
+								<Property Name="SineDuration" Type="Real32" Value="3"/>
+								<Property Name="SineFrequency" Type="Real32" Value="294"/>
+							</PropertyList>
+							<Language>SFX</Language>
+						</SourcePlugin>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Sine" ID="{7C793E7B-E15A-48AA-BFAC-CCB2C8D261AF}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="Sine_02" ID="{06E1F751-B516-4DBD-9745-3DB85B369857}" ShortID="200686741">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F499122E-DA56-4C8A-9212-64AA945C95AA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0DA03D61-28E4-4D17-AC20-2517DD209FA6}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<SourcePlugin Name="Sine" ID="{34DCEAB7-AC67-4DEC-A724-3F940F0C8CF1}" ShortID="123815631" PluginName="Wwise Sine" CompanyID="0" PluginID="100">
+							<PropertyList>
+								<Property Name="SineDuration" Type="Real32" Value="3"/>
+								<Property Name="SineFrequency" Type="Real32" Value="329"/>
+							</PropertyList>
+							<Language>SFX</Language>
+						</SourcePlugin>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Sine" ID="{34DCEAB7-AC67-4DEC-A724-3F940F0C8CF1}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
+	</Containers>
+</WwiseDocument>

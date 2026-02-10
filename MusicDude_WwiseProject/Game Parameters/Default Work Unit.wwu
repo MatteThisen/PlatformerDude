@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{2291A8A0-680A-45DB-97FB-319A7767B7E2}" SchemaVersion="133">
+	<GameParameters>
+		<WorkUnit Name="Default Work Unit" ID="{2291A8A0-680A-45DB-97FB-319A7767B7E2}" PersistMode="Standalone">
+			<ChildrenList>
+				<GameParameter Name="CableValue" ID="{F448ABBB-5F67-4FEA-9F33-36E8BA976C34}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="440"/>
+						<Property Name="Max" Type="Real64" Value="10000"/>
+						<Property Name="Min" Type="Real64" Value="20"/>
+					</PropertyList>
+				</GameParameter>
+			</ChildrenList>
+		</WorkUnit>
+	</GameParameters>
+</WwiseDocument>

@@ -36,6 +36,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject hookObject;
     private TargetJoint2D hookJoint;
 
+    public AK.Wwise.Event hookAttachEvent;
+    public AK.Wwise.Event hookDetachEvent;
+    public AK.Wwise.RTPC cableValue;
+    private float yValueToFreqMultiplier = 100f;
 
     private SplineContainer[] allSplines;
     private SplineContainer currentSpline;
@@ -149,6 +153,7 @@ public class PlayerMovement : MonoBehaviour
         splineAnimate.enabled = false;
         Debug.Log("Disconnected from SplineBox");
 
+        hookDetachEvent.Post(gameObject);
         hookObject.SetActive(false);
         hookJoint.enabled = false;
         isOnSpline = false;
@@ -172,6 +177,7 @@ public class PlayerMovement : MonoBehaviour
         splineAnimate.Container = allSplines[currentSplineIndex];
         splineAnimate.enabled = true;
         hookObject.SetActive(true);
+        hookAttachEvent.Post(gameObject);
 
         splineAnimate.Restart(false);
         splineAnimate.Play();
@@ -191,6 +197,8 @@ public class PlayerMovement : MonoBehaviour
             Vector3 positionOnSpline = currentSpline.Spline.EvaluatePosition(t);
 
             Vector3 targetPosition = positionOnSpline + currentSpline.GetComponentInParent<Transform>().position;
+
+            SetCableRTPC(targetPosition);
 
             hookJoint.target = new Vector2(targetPosition.x, targetPosition.y);
         }
@@ -239,5 +247,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
         return isSplineWithinRange; // Return the t value of the closest point found
+    }
+    public void SetCableRTPC(Vector3 hookPosition)
+    {
+        float yValue = hookPosition.y;
+
+        float rtpcValue = yValue * yValueToFreqMultiplier;
+
+        cableValue.SetGlobalValue(rtpcValue);
     }
 }
