@@ -5,38 +5,30 @@
 			<ChildrenList>
 				<Event Name="StartHookSound" ID="{488A0970-F880-4EE2-84DC-6ABAF1A73890}">
 					<ChildrenList>
-						<Action Name="" ID="{8CD2E449-A42B-4DC3-9840-430FC12A0F49}" ShortID="883661704">
+						<Action Name="" ID="{21D8A69D-8100-4A7D-8AD8-A3DD04195B34}" ShortID="484192427">
+							<PropertyList>
+								<Property Name="FadeInCurve" Type="int16" Value="1"/>
+								<Property Name="FadeTime" Type="Real64" Value="0.02"/>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Sine" ID="{8CCAD227-E76F-4339-B17F-A4AD90385B56}" WorkUnitID="{131B3A5B-C5FA-49A7-86C3-D238FAB31341}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
-						<Action Name="" ID="{29D7FB5C-8F83-4155-BCB6-7A349F8F0975}" ShortID="724277823">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="Sine_01" ID="{0A82BCD0-67E1-40B7-8541-713464D025B9}" WorkUnitID="{131B3A5B-C5FA-49A7-86C3-D238FAB31341}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
-						<Action Name="" ID="{F45C4AE0-31EB-4B96-A9AF-F9A03D5C1925}" ShortID="260101150">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="Sine_02" ID="{06E1F751-B516-4DBD-9745-3DB85B369857}" WorkUnitID="{131B3A5B-C5FA-49A7-86C3-D238FAB31341}"/>
+									<ObjectRef Name="C4" ID="{C8794693-B22A-4AC2-B925-05CC58E35CF2}" WorkUnitID="{131B3A5B-C5FA-49A7-86C3-D238FAB31341}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="StopHookSound" ID="{627B9F77-62D7-4FB6-88CA-6E1DBF5B59DB}">
+				<Event Name="StopHookSound" ID="{A27C22CB-11D6-4EFE-9C29-80E171B7F32F}">
 					<ChildrenList>
-						<Action Name="" ID="{C05719F6-82AE-4B2D-AC10-52A6634B3E74}" ShortID="565652958">
+						<Action Name="" ID="{240BAD27-FE5D-417A-8536-86470CDFEEF1}" ShortID="350070136">
 							<PropertyList>
 								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="FadeOutCurve" Type="int16" Value="1"/>
+								<Property Name="FadeTime" Type="Real64" Value="0.5"/>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Tone" ID="{13353006-651B-484C-AD66-1FD1F98FB450}" WorkUnitID="{131B3A5B-C5FA-49A7-86C3-D238FAB31341}"/>
+									<ObjectRef Name="C4" ID="{C8794693-B22A-4AC2-B925-05CC58E35CF2}" WorkUnitID="{131B3A5B-C5FA-49A7-86C3-D238FAB31341}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

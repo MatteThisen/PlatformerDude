@@ -4,13 +4,6 @@
   "BasePlatform": "Mac",
   "PluginLibs": [
    {
-    "LibName": "Wwise Synth One",
-    "LibId": "9699330",
-    "Type": "Source",
-    "DLL": "AkSynthOne",
-    "StaticLib": "AkSynthOneSource"
-   },
-   {
     "LibName": "System",
     "LibId": "11403271",
     "Type": "AudioDevice"
@@ -21,6 +14,6 @@
     "Type": "AudioDevice"
    }
   ],
-  "FileHash": "{B7EAFA57-0FB2-3BBA-DE64-160C3BC4E25B}"
+  "FileHash": "{FBB1DD20-2267-5DFC-9D4C-1103B4D6B869}"
  }
 }

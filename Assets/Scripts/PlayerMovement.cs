@@ -38,8 +38,8 @@ public class PlayerMovement : MonoBehaviour
 
     public AK.Wwise.Event hookAttachEvent;
     public AK.Wwise.Event hookDetachEvent;
-    public AK.Wwise.RTPC cableValue;
-    private float yValueToFreqMultiplier = 100f;
+    /*public AK.Wwise.RTPC cableValue;
+    private float yValueToFreqMultiplier = 1000f;*/
 
     private SplineContainer[] allSplines;
     private SplineContainer currentSpline;
@@ -198,7 +198,7 @@ public class PlayerMovement : MonoBehaviour
 
             Vector3 targetPosition = positionOnSpline + currentSpline.GetComponentInParent<Transform>().position;
 
-            SetCableRTPC(targetPosition);
+            //SetCableRTPC(targetPosition);
 
             hookJoint.target = new Vector2(targetPosition.x, targetPosition.y);
         }
@@ -248,12 +248,12 @@ public class PlayerMovement : MonoBehaviour
 
         return isSplineWithinRange; // Return the t value of the closest point found
     }
-    public void SetCableRTPC(Vector3 hookPosition)
+   /* public void SetCableRTPC(Vector3 hookPosition)
     {
         float yValue = hookPosition.y;
 
         float rtpcValue = yValue * yValueToFreqMultiplier;
 
         cableValue.SetGlobalValue(rtpcValue);
-    }
+    }*/
 }

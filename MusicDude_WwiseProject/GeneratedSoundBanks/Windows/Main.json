@@ -10,58 +10,48 @@
     "Type": "User",
     "GUID": "{0AD59BD7-E00D-49A1-A099-A841A3CCDB80}",
     "Language": "SFX",
-    "Hash": "{D4E9474D-1EDF-6BFA-771A-7F9C85D8198E}",
+    "Hash": "{B878BC25-683F-029A-5E3A-EA520C3ED248}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
-    "Plugins": {
-     "Custom": [
-      {
-       "Id": "847839499",
-       "Name": "Synth One",
-       "ObjectPath": "\\Containers\\Default Work Unit\\Tone\\Synth One",
-       "GUID": "{4E84455E-881E-4597-B981-8A57A565E833}",
-       "LibName": "Wwise Synth One",
-       "LibId": "9699330"
-      }
-     ]
-    },
+    "Media": [
+     {
+      "Id": "46852446",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "C4.wav",
+      "CachePath": "3B/{3BACBC63-9E58-4A58-4825-B166857EEC7E}.wem"
+     }
+    ],
     "Events": [
      {
       "Id": "1576489771",
       "Name": "StartHookSound",
       "ObjectPath": "\\Events\\Default Work Unit\\StartHookSound",
       "GUID": "{488A0970-F880-4EE2-84DC-6ABAF1A73890}",
-      "DurationType": "Unknown",
-      "PluginRefs": {
-       "Custom": [
-        {
-         "Id": "847839499"
-        }
-       ]
-      }
+      "DurationType": "OneShot",
+      "DurationMin": "26.857143",
+      "DurationMax": "26.857143",
+      "MediaRefs": [
+       {
+        "Id": "46852446"
+       }
+      ]
      },
      {
       "Id": "2450414853",
       "Name": "StopHookSound",
       "ObjectPath": "\\Events\\Default Work Unit\\StopHookSound",
-      "GUID": "{627B9F77-62D7-4FB6-88CA-6E1DBF5B59DB}",
+      "GUID": "{A27C22CB-11D6-4EFE-9C29-80E171B7F32F}",
       "MaxAttenuation": "0",
       "DurationType": "OneShot",
       "DurationMin": "0",
       "DurationMax": "0"
      }
-    ],
-    "GameParameters": [
-     {
-      "Id": "3534526439",
-      "Name": "CableValue",
-      "ObjectPath": "\\Game Parameters\\Default Work Unit\\CableValue",
-      "GUID": "{F448ABBB-5F67-4FEA-9F33-36E8BA976C34}"
-     }
     ]
    }
   ],
-  "FileHash": "{B47F95AD-DC0F-87C8-DB4C-E805EF4D120E}"
+  "FileHash": "{6BB9E052-D017-4EB1-C80E-87EC658C0AC9}"
  }
 }

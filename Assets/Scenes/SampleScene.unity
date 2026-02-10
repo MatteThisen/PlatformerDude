@@ -976,7 +976,6 @@ GameObject:
   - component: {fileID: 665607435}
   - component: {fileID: 665607438}
   - component: {fileID: 665607440}
-  - component: {fileID: 665607441}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1017,10 +1016,6 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 3cea41cd5e8240648a67e0781003fd13, type: 2}
-  cableValue:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 8b83e4570cf02fe4f895abb243a40c12, type: 2}
 --- !u!50 &665607432
 Rigidbody2D:
   serializedVersion: 5
@@ -1212,35 +1207,6 @@ MonoBehaviour:
   scalingFactor: 1
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
---- !u!114 &665607441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 665607430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6481d890fa66ac347976172e8a8f4d54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: AK.Wwise.Unity.MonoBehaviour::AkEvent
-  triggerList: f7e1664c
-  useOtherObject: 0
-  actionOnEventType: 0
-  curveInterpolation: 4
-  enableActionOnEvent: 0
-  data:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: de006048081562048b81124fa51c396d, type: 2}
-  useCallbacks: 0
-  stopSoundOnDestroy: 1
-  Callbacks: []
-  soundEmitterObject: {fileID: 0}
-  transitionDuration: 0
-  eventIdInternal: 0
-  valueGuidInternal: 
-  m_callbackDataInternal: {fileID: 0}
 --- !u!1001 &817933339
 PrefabInstance:
   m_ObjectHideFlags: 0

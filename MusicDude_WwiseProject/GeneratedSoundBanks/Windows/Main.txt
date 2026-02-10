@@ -2,12 +2,6 @@ Event	ID	Name			Wwise Object Path	Notes
 	1576489771	StartHookSound			\Default Work Unit\StartHookSound	
 	2450414853	StopHookSound			\Default Work Unit\StopHookSound	
 
-Game Parameter	ID	Name			Wwise Object Path	Notes
-	3534526439	CableValue			\Default Work Unit\CableValue	
-
-Modulator Envelope	ID	Name			Wwise Object Path	Notes
-	535459393	Modulator Envelope (Custom)				
-
-Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
-	847839499	Synth One	Wwise Synth One		\Containers\Default Work Unit\Tone\Synth One	
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	46852446	C4	.cache\3B\{3BACBC63-9E58-4A58-4825-B166857EEC7E}.wem		\Containers\Default Work Unit\CableStringTones\C4		4737744
 
