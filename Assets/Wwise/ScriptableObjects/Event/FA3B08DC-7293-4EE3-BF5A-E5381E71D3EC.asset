@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f28709130196fb458aec80c52df4b8b, type: 3}
+  m_Name: FA3B08DC-7293-4EE3-BF5A-E5381E71D3EC
+  m_EditorClassIdentifier: AK.Wwise.Unity.API.WwiseTypes::WwiseEventReference
+  objectName: Play_G4
+  id: 2279634167
+  guid: FA3B08DC-7293-4EE3-BF5A-E5381E71D3EC
+  IsInUserDefinedSoundBank: 1

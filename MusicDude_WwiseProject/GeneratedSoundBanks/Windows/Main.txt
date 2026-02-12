@@ -1,7 +1,185 @@
 Event	ID	Name			Wwise Object Path	Notes
-	1576489771	StartHookSound			\Default Work Unit\StartHookSound	
-	2450414853	StopHookSound			\Default Work Unit\StopHookSound	
+	469722736	Stop_CS6			\Default Work Unit\StringSolo\Stop\Stop_CS6	
+	469722738	Stop_CS4			\Default Work Unit\StringSolo\Stop\Stop_CS4	
+	469722739	Stop_CS5			\Default Work Unit\StringSolo\Stop\Stop_CS5	
+	469722740	Stop_CS2			\Default Work Unit\StringSolo\Stop\Stop_CS2	
+	469722741	Stop_CS3			\Default Work Unit\StringSolo\Stop\Stop_CS3	
+	604090688	Stop_DS5			\Default Work Unit\StringSolo\Stop\Stop_DS5	
+	604090689	Stop_DS4			\Default Work Unit\StringSolo\Stop\Stop_DS4	
+	604090691	Stop_DS6			\Default Work Unit\StringSolo\Stop\Stop_DS6	
+	604090694	Stop_DS3			\Default Work Unit\StringSolo\Stop\Stop_DS3	
+	604090695	Stop_DS2			\Default Work Unit\StringSolo\Stop\Stop_DS2	
+	737767290	Stop_AS2			\Default Work Unit\StringSolo\Stop\Stop_AS2	
+	737767291	Stop_AS3			\Default Work Unit\StringSolo\Stop\Stop_AS3	
+	737767292	Stop_AS4			\Default Work Unit\StringSolo\Stop\Stop_AS4	
+	737767293	Stop_AS5			\Default Work Unit\StringSolo\Stop\Stop_AS5	
+	737767294	Stop_AS6			\Default Work Unit\StringSolo\Stop\Stop_AS6	
+	738605832	Stop_FS3			\Default Work Unit\StringSolo\Stop\Stop_FS3	
+	738605833	Stop_FS2			\Default Work Unit\StringSolo\Stop\Stop_FS2	
+	738605837	Stop_FS6			\Default Work Unit\StringSolo\Stop\Stop_FS6	
+	738605838	Stop_FS5			\Default Work Unit\StringSolo\Stop\Stop_FS5	
+	738605839	Stop_FS4			\Default Work Unit\StringSolo\Stop\Stop_FS4	
+	872973912	Stop_GS2			\Default Work Unit\StringSolo\Stop\Stop_GS2	
+	872973913	Stop_GS3			\Default Work Unit\StringSolo\Stop\Stop_GS3	
+	872973916	Stop_GS6			\Default Work Unit\StringSolo\Stop\Stop_GS6	
+	872973918	Stop_GS4			\Default Work Unit\StringSolo\Stop\Stop_GS4	
+	872973919	Stop_GS5			\Default Work Unit\StringSolo\Stop\Stop_GS5	
+	1650177404	EMPTYEVENT			\Default Work Unit\EMPTYEVENT	
+	2262856450	Play_F2			\Default Work Unit\StringSolo\Play\Play_F2	
+	2262856451	Play_F3			\Default Work Unit\StringSolo\Play\Play_F3	
+	2262856452	Play_F4			\Default Work Unit\StringSolo\Play\Play_F4	
+	2262856453	Play_F5			\Default Work Unit\StringSolo\Play\Play_F5	
+	2262856454	Play_F6			\Default Work Unit\StringSolo\Play\Play_F6	
+	2279634160	Play_G3			\Default Work Unit\StringSolo\Play\Play_G3	
+	2279634161	Play_G2			\Default Work Unit\StringSolo\Play\Play_G2	
+	2279634165	Play_G6			\Default Work Unit\StringSolo\Play\Play_G6	
+	2279634166	Play_G5			\Default Work Unit\StringSolo\Play\Play_G5	
+	2279634167	Play_G4			\Default Work Unit\StringSolo\Play\Play_G4	
+	2296411744	Play_D6			\Default Work Unit\StringSolo\Play\Play_D6	
+	2296411746	Play_D4			\Default Work Unit\StringSolo\Play\Play_D4	
+	2296411747	Play_D5			\Default Work Unit\StringSolo\Play\Play_D5	
+	2296411748	Play_D2			\Default Work Unit\StringSolo\Play\Play_D2	
+	2296411749	Play_D3			\Default Work Unit\StringSolo\Play\Play_D3	
+	2313189338	Play_E3			\Default Work Unit\StringSolo\Play\Play_E3	
+	2313189339	Play_E2			\Default Work Unit\StringSolo\Play\Play_E2	
+	2313189340	Play_E5			\Default Work Unit\StringSolo\Play\Play_E5	
+	2313189341	Play_E4			\Default Work Unit\StringSolo\Play\Play_E4	
+	2313189343	Play_E6			\Default Work Unit\StringSolo\Play\Play_E6	
+	2329966920	Play_B4			\Default Work Unit\StringSolo\Play\Play_B4	
+	2329966921	Play_B5			\Default Work Unit\StringSolo\Play\Play_B5	
+	2329966922	Play_B6			\Default Work Unit\StringSolo\Play\Play_B6	
+	2329966926	Play_B2			\Default Work Unit\StringSolo\Play\Play_B2	
+	2329966927	Play_B3			\Default Work Unit\StringSolo\Play\Play_B3	
+	2346744633	Play_C6			\Default Work Unit\StringSolo\Play\Play_C6	
+	2346744634	Play_C5			\Default Work Unit\StringSolo\Play\Play_C5	
+	2346744635	Play_C4			\Default Work Unit\StringSolo\Play\Play_C4	
+	2346744636	Play_C3			\Default Work Unit\StringSolo\Play\Play_C3	
+	2346744637	Play_C2			\Default Work Unit\StringSolo\Play\Play_C2	
+	2380299776	Play_A5			\Default Work Unit\StringSolo\Play\Play_A5	
+	2380299777	Play_A4			\Default Work Unit\StringSolo\Play\Play_A4	
+	2380299779	Play_A6			\Default Work Unit\StringSolo\Play\Play_A6	
+	2380299782	Play_A3			\Default Work Unit\StringSolo\Play\Play_A3	
+	2380299783	Play_A2			\Default Work Unit\StringSolo\Play\Play_A2	
+	2522182218	Play_FS3			\Default Work Unit\StringSolo\Play\Play_FS3	
+	2522182219	Play_FS2			\Default Work Unit\StringSolo\Play\Play_FS2	
+	2522182220	Play_FS5			\Default Work Unit\StringSolo\Play\Play_FS5	
+	2522182221	Play_FS4			\Default Work Unit\StringSolo\Play\Play_FS4	
+	2522182223	Play_FS6			\Default Work Unit\StringSolo\Play\Play_FS6	
+	2522329378	Play_GS2			\Default Work Unit\StringSolo\Play\Play_GS2	
+	2522329379	Play_GS3			\Default Work Unit\StringSolo\Play\Play_GS3	
+	2522329380	Play_GS4			\Default Work Unit\StringSolo\Play\Play_GS4	
+	2522329381	Play_GS5			\Default Work Unit\StringSolo\Play\Play_GS5	
+	2522329382	Play_GS6			\Default Work Unit\StringSolo\Play\Play_GS6	
+	2574614744	Stop_A3			\Default Work Unit\StringSolo\Stop\Stop_A3	
+	2574614745	Stop_A2			\Default Work Unit\StringSolo\Stop\Stop_A2	
+	2574614749	Stop_A6			\Default Work Unit\StringSolo\Stop\Stop_A6	
+	2574614750	Stop_A5			\Default Work Unit\StringSolo\Stop\Stop_A5	
+	2574614751	Stop_A4			\Default Work Unit\StringSolo\Stop\Stop_A4	
+	2591392328	Stop_B6			\Default Work Unit\StringSolo\Stop\Stop_B6	
+	2591392330	Stop_B4			\Default Work Unit\StringSolo\Stop\Stop_B4	
+	2591392331	Stop_B5			\Default Work Unit\StringSolo\Stop\Stop_B5	
+	2591392332	Stop_B2			\Default Work Unit\StringSolo\Stop\Stop_B2	
+	2591392333	Stop_B3			\Default Work Unit\StringSolo\Stop\Stop_B3	
+	2608170018	Stop_C3			\Default Work Unit\StringSolo\Stop\Stop_C3	
+	2608170019	Stop_C2			\Default Work Unit\StringSolo\Stop\Stop_C2	
+	2608170020	Stop_C5			\Default Work Unit\StringSolo\Stop\Stop_C5	
+	2608170021	Stop_C4			\Default Work Unit\StringSolo\Stop\Stop_C4	
+	2608170023	Stop_C6			\Default Work Unit\StringSolo\Stop\Stop_C6	
+	2624947600	Stop_D4			\Default Work Unit\StringSolo\Stop\Stop_D4	
+	2624947601	Stop_D5			\Default Work Unit\StringSolo\Stop\Stop_D5	
+	2624947602	Stop_D6			\Default Work Unit\StringSolo\Stop\Stop_D6	
+	2624947606	Stop_D2			\Default Work Unit\StringSolo\Stop\Stop_D2	
+	2624947607	Stop_D3			\Default Work Unit\StringSolo\Stop\Stop_D3	
+	2641725185	Stop_E6			\Default Work Unit\StringSolo\Stop\Stop_E6	
+	2641725186	Stop_E5			\Default Work Unit\StringSolo\Stop\Stop_E5	
+	2641725187	Stop_E4			\Default Work Unit\StringSolo\Stop\Stop_E4	
+	2641725188	Stop_E3			\Default Work Unit\StringSolo\Stop\Stop_E3	
+	2641725189	Stop_E2			\Default Work Unit\StringSolo\Stop\Stop_E2	
+	2656697353	Play_DS6			\Default Work Unit\StringSolo\Play\Play_DS6	
+	2656697354	Play_DS5			\Default Work Unit\StringSolo\Play\Play_DS5	
+	2656697355	Play_DS4			\Default Work Unit\StringSolo\Play\Play_DS4	
+	2656697356	Play_DS3			\Default Work Unit\StringSolo\Play\Play_DS3	
+	2656697357	Play_DS2			\Default Work Unit\StringSolo\Play\Play_DS2	
+	2657536000	Play_AS2			\Default Work Unit\StringSolo\Play\Play_AS2	
+	2657536001	Play_AS3			\Default Work Unit\StringSolo\Play\Play_AS3	
+	2657536004	Play_AS6			\Default Work Unit\StringSolo\Play\Play_AS6	
+	2657536006	Play_AS4			\Default Work Unit\StringSolo\Play\Play_AS4	
+	2657536007	Play_AS5			\Default Work Unit\StringSolo\Play\Play_AS5	
+	2658502904	Stop_F2			\Default Work Unit\StringSolo\Stop\Stop_F2	
+	2658502905	Stop_F3			\Default Work Unit\StringSolo\Stop\Stop_F3	
+	2658502908	Stop_F6			\Default Work Unit\StringSolo\Stop\Stop_F6	
+	2658502910	Stop_F4			\Default Work Unit\StringSolo\Stop\Stop_F4	
+	2658502911	Stop_F5			\Default Work Unit\StringSolo\Stop\Stop_F5	
+	2675280488	Stop_G5			\Default Work Unit\StringSolo\Stop\Stop_G5	
+	2675280489	Stop_G4			\Default Work Unit\StringSolo\Stop\Stop_G4	
+	2675280491	Stop_G6			\Default Work Unit\StringSolo\Stop\Stop_G6	
+	2675280494	Stop_G3			\Default Work Unit\StringSolo\Stop\Stop_G3	
+	2675280495	Stop_G2			\Default Work Unit\StringSolo\Stop\Stop_G2	
+	2925683712	Play_CS4			\Default Work Unit\StringSolo\Play\Play_CS4	
+	2925683713	Play_CS5			\Default Work Unit\StringSolo\Play\Play_CS5	
+	2925683714	Play_CS6			\Default Work Unit\StringSolo\Play\Play_CS6	
+	2925683718	Play_CS2			\Default Work Unit\StringSolo\Play\Play_CS2	
+	2925683719	Play_CS3			\Default Work Unit\StringSolo\Play\Play_CS3	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	762638	F5	.cache\96\{9657D436-8E55-CC44-60A6-273B231BB646}.wem		\Containers\Default Work Unit\CableStringTones\F5		4737744
+	18260624	G5	.cache\D0\{D094FEEA-F17B-04DF-1C24-35B0899D1619}.wem		\Containers\Default Work Unit\CableStringTones\G5		4737744
+	20177777	G2	.cache\82\{8298258F-24AC-05C5-9E5B-885156BAB405}.wem		\Containers\Default Work Unit\CableStringTones\G2		4839332
+	21968982	A#2	.cache\B3\{B346990A-7635-31DC-D617-89D95273AC4E}.wem		\Containers\Default Work Unit\CableStringTones\A#2		4736956
 	46852446	C4	.cache\3B\{3BACBC63-9E58-4A58-4825-B166857EEC7E}.wem		\Containers\Default Work Unit\CableStringTones\C4		4737744
+	50431953	A2	.cache\50\{50BB7A76-FA3D-5929-0B60-3CE1B7021D2C}.wem		\Containers\Default Work Unit\CableStringTones\A2		4737744
+	57463987	C#2	.cache\26\{26188F97-2CCF-D428-A24B-6396E5913543}.wem		\Containers\Default Work Unit\CableStringTones\C#2		4737744
+	81057803	F#5	.cache\83\{83197C33-4091-1C25-724C-E8FF46C77A73}.wem		\Containers\Default Work Unit\CableStringTones\F#5		4737744
+	123331081	D4	.cache\CC\{CC851936-F584-9F23-2ED4-DCE58DB7F283}.wem		\Containers\Default Work Unit\CableStringTones\D4		4737744
+	146519693	C5	.cache\87\{87D8C16C-C266-B86B-9361-790C0F60E232}.wem		\Containers\Default Work Unit\CableStringTones\C5		4737744
+	147462355	D3	.cache\D8\{D8272857-A92E-D63B-B26B-AC72DE26D88C}.wem		\Containers\Default Work Unit\CableStringTones\D3		4736956
+	152092824	F#3	.cache\F2\{F2A7E6FF-2A21-CA3F-D101-47EEEEBD75B0}.wem		\Containers\Default Work Unit\CableStringTones\F#3		4736956
+	189471649	B2	.cache\C7\{C7EAD839-2AB5-F201-480F-2F7D18EB329F}.wem		\Containers\Default Work Unit\CableStringTones\B2		4737744
+	210214177	E4	.cache\D2\{D2ED5800-73D4-0887-E055-A758E2A908E8}.wem		\Containers\Default Work Unit\CableStringTones\E4		4736956
+	225266320	A6	.cache\EE\{EEEB3297-798A-467F-9501-B24D07909772}.wem		\Containers\Default Work Unit\CableStringTones\A6		4736956
+	243200630	C6	.cache\1F\{1F6BE65C-B53A-DFD9-3766-E908C40492E6}.wem		\Containers\Default Work Unit\CableStringTones\C6		4737744
+	250860031	C#3	.cache\CC\{CCE423CF-EAD4-F3FF-1976-1901472C28C4}.wem		\Containers\Default Work Unit\CableStringTones\C#3		4737744
+	316498631	G#6	.cache\44\{44526637-5181-62BC-6F4E-30D1EB2D3D9F}.wem		\Containers\Default Work Unit\CableStringTones\G#6		4737744
+	323732895	G#2	.cache\1E\{1E3DBB8A-84A1-224B-FFFB-D3CCC28CAF19}.wem		\Containers\Default Work Unit\CableStringTones\G#2		4736956
+	368869229	G#3	.cache\E8\{E8FE362A-1163-2B8D-2ABB-662FF77C47E0}.wem		\Containers\Default Work Unit\CableStringTones\G#3		4737744
+	384521695	B6	.cache\29\{29DA037A-1FDC-494D-57C8-EC9E6134651D}.wem		\Containers\Default Work Unit\CableStringTones\B6		4737744
+	406051785	F3	.cache\0B\{0BEAA7B4-1FA1-F96E-8481-F344EAAE1AF5}.wem		\Containers\Default Work Unit\CableStringTones\F3		4736956
+	449573596	F4	.cache\96\{96880D4E-DE6F-42E3-1856-66BD2AA33741}.wem		\Containers\Default Work Unit\CableStringTones\F4		4737744
+	458465507	F#4	.cache\61\{61486AC1-82F0-B796-BF79-96FE8B4C1BA0}.wem		\Containers\Default Work Unit\CableStringTones\F#4		4736956
+	473766645	C2	.cache\99\{9954E035-1ACD-7F9A-51B9-8AA0EECC0BCF}.wem		\Containers\Default Work Unit\CableStringTones\C2		4736956
+	475971615	A#5	.cache\22\{22C610C0-0C5A-7FC5-EA88-619C11DC094E}.wem		\Containers\Default Work Unit\CableStringTones\A#5		4736956
+	495267022	D#3	.cache\36\{36DD9FB3-1334-0F6D-3725-5DE84AF8968B}.wem		\Containers\Default Work Unit\CableStringTones\D#3		4737744
+	511462176	D#5	.cache\66\{664844A5-D72C-FC14-70BE-F9E81A9862E9}.wem		\Containers\Default Work Unit\CableStringTones\D#5		4737744
+	533576572	F#6	.cache\0D\{0D61E4B3-63CF-BB07-ED60-FE92D2EEDB88}.wem		\Containers\Default Work Unit\CableStringTones\F#6		4737744
+	538889647	F6	.cache\7C\{7C7973B8-01DD-54F9-CEDF-4A8DF1B9BB5E}.wem		\Containers\Default Work Unit\CableStringTones\F6		4737744
+	539728601	F#2	.cache\11\{115C0E8F-720F-DE8D-1FF3-BDF247BC8662}.wem		\Containers\Default Work Unit\CableStringTones\F#2		4736956
+	542352407	C3	.cache\D3\{D3D9B36C-81D7-EF60-23A1-FF7DB07B8C71}.wem		\Containers\Default Work Unit\CableStringTones\C3		4736956
+	545947373	A3	.cache\3D\{3D163924-A5D3-33FE-26E9-4FF32EB8BF32}.wem		\Containers\Default Work Unit\CableStringTones\A3		4736956
+	562334291	A#3	.cache\27\{27F7F666-09B1-1DF0-B214-81975B7718DC}.wem		\Containers\Default Work Unit\CableStringTones\A#3		4737744
+	571710332	B3	.cache\40\{40708A62-DA02-2534-366E-135A69322AA4}.wem		\Containers\Default Work Unit\CableStringTones\B3		4736956
+	576104861	B5	.cache\9C\{9C51FD85-F14B-0611-D6AA-C61E1E1011F9}.wem		\Containers\Default Work Unit\CableStringTones\B5		4737744
+	591183336	D#4	.cache\0B\{0B351EB8-1AB1-5AC9-7B7A-75DE929CB60F}.wem		\Containers\Default Work Unit\CableStringTones\D#4		4737744
+	598340662	E2	.cache\46\{46EA554A-7D36-261D-CA94-273B52C4E9A3}.wem		\Containers\Default Work Unit\CableStringTones\E2		4736956
+	600517834	A4	.cache\E0\{E0DD624D-9269-EDE6-B38F-C3F997F1B8A4}.wem		\Containers\Default Work Unit\CableStringTones\A4		4737744
+	647319949	D2	.cache\E6\{E67ECAB4-00D5-50AF-DFC7-D1B521612F28}.wem		\Containers\Default Work Unit\CableStringTones\D2		4736956
+	663146334	E6	.cache\AA\{AA00C1AC-7D88-ED93-FE2E-F45BB89DA985}.wem		\Containers\Default Work Unit\CableStringTones\E6		4737744
+	671067946	D#6	.cache\4F\{4FFE8FA0-2000-8448-BC74-303EBB75BEE3}.wem		\Containers\Default Work Unit\CableStringTones\D#6		4737744
+	671773730	A#4	.cache\1B\{1B9C8709-F468-CFA8-EB98-2DAA228F4D2E}.wem		\Containers\Default Work Unit\CableStringTones\A#4		4737744
+	678078249	D6	.cache\2B\{2BA249B9-C6E9-D6D5-B067-95121DBDE05B}.wem		\Containers\Default Work Unit\CableStringTones\D6		4737744
+	715462402	F2	.cache\6E\{6ECD1E30-C81F-279C-E743-36B3900B1930}.wem		\Containers\Default Work Unit\CableStringTones\F2		4736956
+	732646617	G3	.cache\9D\{9D75BC63-1D5D-24EC-CE1E-BCEAF25DDB97}.wem		\Containers\Default Work Unit\CableStringTones\G3		4737744
+	755197985	B4	.cache\51\{510958DA-C4B5-4FB3-E02C-2150BF4442CC}.wem		\Containers\Default Work Unit\CableStringTones\B4		4737744
+	813392338	A5	.cache\18\{18AAC3C8-FAB5-81EE-4C17-717F56A78411}.wem		\Containers\Default Work Unit\CableStringTones\A5		4737744
+	851246323	C#4	.cache\1A\{1A076951-6AB9-389F-EB54-29CDE6C05718}.wem		\Containers\Default Work Unit\CableStringTones\C#4		4737744
+	877351501	A#6	.cache\B2\{B2A2A5FA-18C9-C0B6-3FB6-78EF341F1293}.wem		\Containers\Default Work Unit\CableStringTones\A#6		4736956
+	879607598	E5	.cache\2F\{2FD9FE52-4160-8481-17DF-E3D46AE53B2B}.wem		\Containers\Default Work Unit\CableStringTones\E5		4737744
+	888996546	E3	.cache\32\{322911DE-FBF3-FC55-06DB-4B1ADF4516B3}.wem		\Containers\Default Work Unit\CableStringTones\E3		4737744
+	972106216	G#4	.cache\25\{25BDAD73-AA44-6011-A89A-246E12DFDBCE}.wem		\Containers\Default Work Unit\CableStringTones\G#4		4737744
+	978519686	D5	.cache\9F\{9F417411-CA57-2DAF-09C8-F9123CFEE0EB}.wem		\Containers\Default Work Unit\CableStringTones\D5		4737744
+	979919652	G4	.cache\68\{68D6F746-BF41-04B5-A27F-25CDC9B60C92}.wem		\Containers\Default Work Unit\CableStringTones\G4		4737744
+	984337739	D#2	.cache\57\{572779B6-8E34-6679-852A-7FA18157C1A3}.wem		\Containers\Default Work Unit\CableStringTones\D#2		4736956
+	998669267	C#5	.cache\B5\{B56FF4C5-CDBB-C372-9BC9-69B45856D03D}.wem		\Containers\Default Work Unit\CableStringTones\C#5		4737744
+	1012203006	C#6	.cache\C1\{C10F7AF4-4912-D422-6686-8B0EFB389EBD}.wem		\Containers\Default Work Unit\CableStringTones\C#6		4737744
+	1017711645	G#5	.cache\3E\{3E380DF1-90AF-71BD-DF50-EDBBD458FE70}.wem		\Containers\Default Work Unit\CableStringTones\G#5		4737744
+	1068767569	G6	.cache\82\{825857F8-CF9B-3A4A-F326-63F0FD2F8E64}.wem		\Containers\Default Work Unit\CableStringTones\G6		4737744
 
