@@ -4,11 +4,10 @@ using UnityEngine.Splines;
 
 public class SplineBoxBehaviour : MonoBehaviour
 {
-
-    [SerializeField] private SplineInstantiate endPointInstantiator;
     [SerializeField] private SplineContainer splineContainer;
 
     [SerializeField] private Instruments thisInstrument;
+    [SerializeField] private Notes thisNote;
 
     private enum Instruments
     {
@@ -87,19 +86,26 @@ public class SplineBoxBehaviour : MonoBehaviour
     private void Awake()
     {
         float splineLength = splineContainer.CalculateLength();
-        endPointInstantiator.MaxSpacing = splineLength;
-        endPointInstantiator.MinSpacing = splineLength;
+    }
+    
+    public void PlayNote()
+    {
+        int noteIndex = (int)thisNote;
+
+        if (noteIndex < StartEvents.Count)
+        {
+            StartEvents[noteIndex].Post(gameObject);
+            Debug.Log($"Played note {thisNote} on {thisInstrument}");
+        }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void StopNote()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        int noteIndex = (int)thisNote;
+        if (noteIndex < StopEvents.Count)
+        {
+            StopEvents[noteIndex].Post(gameObject);
+            Debug.Log($"Stopped note {thisNote} on {thisInstrument}");
+        }
     }
 }

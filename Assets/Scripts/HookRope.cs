@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HookRope : MonoBehaviour
@@ -7,16 +8,25 @@ public class HookRope : MonoBehaviour
     private GameObject hookObject;
     private LineRenderer lineRenderer;
 
+    [SerializeField] private bool hookOrientationUp;
+
     private Vector2 hookAttachPointOffset = new Vector2(0f, -0.25f);
     private Vector2 playerAttachPointOffset = new Vector2(0f, 0.35f);
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
+        lineRenderer = GetComponent<LineRenderer>();
         player = GameObject.Find("Player");
         hookObject = GameObject.Find("PlayerHook");
-        lineRenderer = GetComponent<LineRenderer>();
+
+        if (!hookOrientationUp)
+        {
+            hookAttachPointOffset = new Vector2(0f, 0.25f);
+            playerAttachPointOffset = new Vector2(0f, -0.35f);
+        }
     }
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -26,4 +36,19 @@ public class HookRope : MonoBehaviour
         lineRenderer.SetPosition(0, hookAttachPoint);
         lineRenderer.SetPosition(1, playerAttachPoint);
     }
+
+    void OnDisable()
+    {
+        lineRenderer.SetPosition(0, Vector2.zero);
+        lineRenderer.SetPosition(1, Vector2.zero);
+    }
+
+    void OnEnable()
+    {
+        Vector2 hookAttachPoint = (Vector2)hookObject.transform.position + hookAttachPointOffset;
+        Vector2 playerAttachPoint = (Vector2)player.transform.position + playerAttachPointOffset;
+        lineRenderer.SetPosition(0, hookAttachPoint);
+        lineRenderer.SetPosition(1, playerAttachPoint);
+    }
+
 }

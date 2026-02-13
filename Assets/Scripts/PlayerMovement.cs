@@ -1,6 +1,10 @@
+using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Splines;
 using static UnityEngine.GraphicsBuffer;
@@ -27,65 +31,71 @@ public class PlayerMovement : MonoBehaviour
     private float hookStartNormPosOnSpline;
     private int currentSplineIndex;
 
-    [SerializeField] private SplineAnimate splineAnimate;
+    private SplineAnimate splineAnimateUp;
+    private SplineAnimate splineAnimateDown;
     private Rigidbody2D rb;
-    private Collider2D splineCol;
-    private float moveInput;
+    private Vector2 moveInput;
     private bool isGrounded;
+    private PlayerInput playerInput;
 
-    [SerializeField] private GameObject hookObject;
+    [SerializeField] private GameObject hookUpObject;
+    [SerializeField] private GameObject hookDownObject;
+    private GameObject hookUpSprite;
+    private GameObject hookUpRope;
+    private GameObject hookDownSprite;
+    private GameObject hookDownRope;
     private TargetJoint2D hookJoint;
-
-    public AK.Wwise.Event hookAttachEvent;
-    public AK.Wwise.Event hookDetachEvent;
-    /*public AK.Wwise.RTPC cableValue;
-    private float yValueToFreqMultiplier = 1000f;*/
+    
+    private bool isHookUpActive;
+    private bool isHookDownActive;
 
     private SplineContainer[] allSplines;
     private SplineContainer currentSpline;
-
+    private SplineBoxBehaviour splineBoxBehaviour;
 
     void Start()
     {
+        playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody2D>();
         hookJoint = GetComponent<TargetJoint2D>();
+        
+        
+        
+        /*hookSprite = hookObject.GetComponentInChildren<SpriteRenderer>().gameObject;
+        hookRope = hookObject.GetComponentInChildren<LineRenderer>().gameObject;
+
+        if (hookObject == null || hookSprite == null || hookRope == null)
+        {
+            Debug.LogError("Hook object and/or children not found.");
+        } else {
+            hookObject.SetActive(false);
+            hookSprite.SetActive(false);
+            hookRope.SetActive(false);
+        }*/
+
+
         splineVelocityCalcPoint1 = transform.position;
 
         allSplines = FindObjectsByType<SplineContainer>(FindObjectsSortMode.None);
 
     }
 
+    public void OnJump()
+    {
+        if (isGrounded)
+            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+    }
+
     void Update()
     {
-        moveInput = Input.GetAxisRaw("Horizontal");
-
         isGrounded = Physics2D.OverlapCircle(transform.position, groundCheckRadius, groundLayer);
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            Debug.Log("Jump");
-            Jump();
-        }
-
-        // check if player is near enough to spline and if the player presses space, connect to spline
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-          
-            ConnectToSpline();
-            /* splineCol = Physics2D.OverlapCircle(transform.position, groundCheckRadius, 1 << LayerMask.NameToLayer("SplineBox"));
-
-            if (splineCol != null)
-            {
-                ConnectToSpline();
-            }*/
-        }
+        moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
 
         // If the player is on a spline, update the hook position and check for disconnect conditions
         if (isOnSpline)
         {
             timeSinceSplineStart += Time.deltaTime;
-
-            hasReachedEnd = Physics2D.OverlapCircle(hookObject.transform.position, splineEndCheckRadius, 1 << LayerMask.NameToLayer("SplineEndPoint"));
 
             rb.gravityScale = 0;
 
@@ -93,10 +103,29 @@ public class PlayerMovement : MonoBehaviour
 
             HookUpdater();
 
-            // this if statement disconnects the player from the spline if true
-            if (Input.GetKeyDown(KeyCode.Space) && timeSinceSplineStart > 0.2f || hasReachedEnd)
+        }
+
+        if (playerInput.actions["HookUp"].WasPressedThisFrame() && !isOnSpline)
+        {
+            if (!isOnSpline)
             {
-                DisconnectFromSpline();
+                ConnectToSpline(hookUpObject);
+            }
+            else if (isOnSpline)
+            {
+                DisconnectFromSpline(hookUpObject);
+            }
+        }
+
+        if (playerInput.actions["HookDown"].WasPressedThisFrame() && !isOnSpline)
+        {
+            if (!isOnSpline)
+            {
+                ConnectToSpline(hookDownObject);
+            }
+            else if (isOnSpline)
+            {
+                DisconnectFromSpline(hookDownObject);
             }
         }
     }
@@ -117,9 +146,9 @@ public class PlayerMovement : MonoBehaviour
 
     void ApplyMovement()
     {
-        if (moveInput != 0)
+        if (moveInput.x != 0)
         {
-            float targetSpeed = moveInput * maxSpeed;
+            float targetSpeed = moveInput.x * maxSpeed;
             float speedDiff = targetSpeed - rb.linearVelocity.x;
             float movementForce = Mathf.Abs(targetSpeed) > 0.01f ? acceleration : deceleration;
             float force = speedDiff * movementForce;
@@ -142,31 +171,47 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Jump()
+    void DisconnectFromSpline(GameObject hookObject)
     {
-        rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-    }
+        if (hookObject == hookUpObject)
+        {
+            hookUpSprite.SetActive(false);
+            hookUpRope.SetActive(false);
+        } else
+        {
+            hookDownSprite.SetActive(false);
+            hookDownRope.SetActive(false);
+        }
 
-    void DisconnectFromSpline()
-    {
+
+
+        SplineAnimate splineAnimate = hookObject.GetComponent<SplineAnimate>();
+
         splineAnimate.Pause();
         splineAnimate.enabled = false;
         Debug.Log("Disconnected from SplineBox");
 
-        hookDetachEvent.Post(gameObject);
+        if (splineBoxBehaviour != null)
+        {
+            splineBoxBehaviour.StopNote();
+        }
+        splineBoxBehaviour = null;
+
         hookObject.SetActive(false);
+
         hookJoint.enabled = false;
         isOnSpline = false;
         timeSinceSplineStart = 0;
         hasReachedEnd = false;
         rb.gravityScale = 1;
         rb.linearVelocity = splineExitVelocity;
+        currentSpline = null;
     }
 
-    void ConnectToSpline()
+    void ConnectToSpline(GameObject hookObject)
     {
 
-        if (!FindClosestSplinePoint())
+        if (!FindClosestSplinePoint(hookObject))
         {
             Debug.Log("No spline found within range");
             return;
@@ -177,7 +222,10 @@ public class PlayerMovement : MonoBehaviour
         splineAnimate.Container = allSplines[currentSplineIndex];
         splineAnimate.enabled = true;
         hookObject.SetActive(true);
-        hookAttachEvent.Post(gameObject);
+        splineBoxBehaviour = currentSpline.GetComponentInParent<SplineBoxBehaviour>();
+        if (splineBoxBehaviour != null) {
+            splineBoxBehaviour.PlayNote();
+        }
 
         splineAnimate.Restart(false);
         splineAnimate.Play();
@@ -188,23 +236,47 @@ public class PlayerMovement : MonoBehaviour
 
     void HookUpdater()
     {
-        if (hookJoint != null)
+        if (hookJoint != null || isHookUpActive)
         {
+          
+            SplineAnimate splineAnimate = hookUpObject.GetComponent<SplineAnimate>();
             // t finds the normalized time along the spline, as well as the offset from the start of the spline found in FindClosestSplinePoint
             float t = splineAnimate.NormalizedTime + hookStartNormPosOnSpline;
+
+            if (t > 0.99f)
+            {
+                hasReachedEnd = true;
+            }
 
             // Get the position along the spline
             Vector3 positionOnSpline = currentSpline.Spline.EvaluatePosition(t);
 
             Vector3 targetPosition = positionOnSpline + currentSpline.GetComponentInParent<Transform>().position;
 
-            //SetCableRTPC(targetPosition);
-
             hookJoint.target = new Vector2(targetPosition.x, targetPosition.y);
+
+            hookUpSprite.SetActive(true);
+            hookUpRope.SetActive(true);
+
+        }
+
+        if (isHookDownActive)
+        {
+            SplineAnimate splineAnimate = hookDownObject.GetComponent<SplineAnimate>();
+            // t finds the normalized time along the spline, as well as the offset from the start of the spline found in FindClosestSplinePoint
+            float t = splineAnimate.NormalizedTime + hookStartNormPosOnSpline;
+
+            if (t > 0.99f)
+            {
+                hasReachedEnd = true;
+            }
+
+            hookDownSprite.SetActive(true);
+            hookDownRope.SetActive(true);
         }
     }
 
-    bool FindClosestSplinePoint()
+    bool FindClosestSplinePoint(GameObject hookObject)
     {
         bool isSplineWithinRange = false;
         float minDist = float.MaxValue;
@@ -246,14 +318,6 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("No spline found within range");
         }
 
-        return isSplineWithinRange; // Return the t value of the closest point found
+        return isSplineWithinRange; // Return whether a spline was found within range
     }
-   /* public void SetCableRTPC(Vector3 hookPosition)
-    {
-        float yValue = hookPosition.y;
-
-        float rtpcValue = yValue * yValueToFreqMultiplier;
-
-        cableValue.SetGlobalValue(rtpcValue);
-    }*/
 }

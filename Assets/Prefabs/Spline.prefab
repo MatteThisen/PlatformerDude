@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8364765793324254168}
   - component: {fileID: 552155722596926719}
-  - component: {fileID: 1309121769864695374}
   - component: {fileID: 491628398567719029}
   - component: {fileID: 4398513321389482758}
   m_Layer: 6
@@ -64,45 +63,45 @@ MonoBehaviour:
   - m_EditModeType: 1
     m_Knots:
     - Position:
-        x: -7.167676
-        y: 0
-        z: 0.00024414062
+        x: 7.03
+        y: 1.03
+        z: 0
       TangentIn:
-        x: 0
-        y: 0
-        z: -1
+        x: -0
+        y: -0
+        z: -1.155
       TangentOut:
         x: 0
         y: 0
-        z: 1
+        z: 1.155
       Rotation:
         value:
           x: 0
-          y: 0
+          y: 0.70710677
           z: 0
-          w: 1
+          w: 0.70710677
     - Position:
-        x: 7.0923233
-        y: 0
-        z: 0.00024414062
+        x: 18.58
+        y: 1.03
+        z: 0
       TangentIn:
-        x: 0
-        y: 0
-        z: -1
+        x: -0
+        y: -0
+        z: -1.155
       TangentOut:
         x: 0
         y: 0
-        z: 1
+        z: 1.155
       Rotation:
         value:
           x: 0
-          y: 0
+          y: 0.70710677
           z: 0
-          w: 1
+          w: 0.70710677
     m_MetaData:
-    - Mode: 2
+    - Mode: 0
       Tension: 0.5
-    - Mode: 2
+    - Mode: 0
       Tension: 0.5
     m_Closed: 0
     m_IntData:
@@ -115,60 +114,6 @@ MonoBehaviour:
       m_Data: []
   m_Knots:
     m_KnotsLink: []
---- !u!114 &1309121769864695374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8380060901045694654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b74686beb0670a4ea61325c0acf4411, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Container: {fileID: 552155722596926719}
-  m_ItemsToInstantiate:
-  - prefab: {fileID: 0}
-    Prefab: {fileID: 189333211324704255, guid: 4b662024a1718da418dc9877b88d5055, type: 3}
-    probability: 0
-    Probability: 100
-  - prefab: {fileID: 0}
-    Prefab: {fileID: 4691229841442909838, guid: f922125ef0a2f4640a8af8a366a7453d, type: 3}
-    probability: 0
-    Probability: 100
-  m_Method: 1
-  m_Space: 2
-  m_Spacing: {x: 14.441952, y: 14.441952}
-  m_Up: 1
-  m_Forward: 2
-  m_PositionOffset:
-    setup: 0
-    min: {x: 0, y: 0, z: 0}
-    max: {x: 0, y: 0, z: 0}
-    randomX: 0
-    randomY: 0
-    randomZ: 0
-    space: 0
-  m_RotationOffset:
-    setup: 0
-    min: {x: 0, y: 0, z: 0}
-    max: {x: 0, y: 0, z: 0}
-    randomX: 0
-    randomY: 0
-    randomZ: 0
-    space: 0
-  m_ScaleOffset:
-    setup: 0
-    min: {x: 0, y: 0, z: 0}
-    max: {x: 0, y: 0, z: 0}
-    randomX: 0
-    randomY: 0
-    randomZ: 0
-    space: 0
-  m_DeprecatedInstances: []
-  m_AutoRefresh: 1
-  m_Seed: -114454
 --- !u!114 &491628398567719029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,5 +176,374 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbdc3217860fe14b8c15abc4c89f864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SplineBoxBehaviour
-  endPointInstantiator: {fileID: 1309121769864695374}
   splineContainer: {fileID: 552155722596926719}
+  thisInstrument: 1
+  thisNote: 28
+  StartEvents:
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 801c3354de79b0c44b741c69efb1e68d, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 91619e1388406364bb123d09eca8b3e3, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 091d884fa772c01409a46f3538770158, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: ff660b1daaf02b44c8d39b63d7989432, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 545209d022241474a82be12365a40c56, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 68c95f3edc6a6914f8fed7a9911d8eca, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 6f6c5959a1b1f3a4488d0a6d191f77ae, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: d313ea4992e068643873c6d459bf5976, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 9d2baf61a4547b94abeb7df8356d99b0, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: f9e78c61cfbffef4abc38da60dfbb0da, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: fe8813a7a0cabf54da82f46d7a0ee357, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e5283e5b67c65774f8ebd063e887b828, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 2d6bfbdcbad029145b036c6afce7abfd, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: fc0ea79b797397c41b9162ee2cf1e5dd, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: dd79640c5f8f30047acd527c7ab8373a, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 1e6069ec87cc97d4abf72b6faf0e7e9e, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 142b31cbb0a4d1c4a9ca29f06f8ed628, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 09d52533fd8af374db909be73212f7da, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: c59702f2a51030b47878f38220e308b7, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 7fe26655625c8954bb9e333a90c13a90, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: b54ad2dff7cd4aa438141c3cb648dbb8, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 0868e62f0ed499a4ab073f8116a27aa4, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 316287d4c38b8bb44b1e08316559abbe, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: bfe4091eb3491f94eb0e09fd9c59e925, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 91dd410d27319bd4bb875d6afaf973cb, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e262ff8d5870c0c46b1661dc68bb3d9b, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: bc9c785fce9fc604b8b981e779a5d523, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 61a57ce2aaa31b94fb6e500d9697c705, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 31be712f761081e45940588c2261b568, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e348ba9c241391d4bb451bc78ad7b553, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 74ce3c9b7713ea0408cdfd916f001999, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 309d337c790c4224da81dd4846815f97, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: d21a0ef121ee6ed42954565e612d5e25, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: aefcd036076aaff40b4d5c2a0d40367a, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 1fa9bd7332b4dd54db45abcc6a069957, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: fb62d4e5304c3624d8bb4eda91327671, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: cfb47789229a627458505b3c02b51e99, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 0689f48c7877a4841b3f0a94968a07c0, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: b14bf740b2af3f947bf1e192a5699419, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 5940285363752bc46bf2ee2b20bbf3a0, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: bb802c4068139dc4eb72b13a544e74fb, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 790839204238c00428b3e19346af525f, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 6dc469533f67e9e4389b50e726976c3d, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 429b12fae61a5444484d4650d6f58a92, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 6312d562fab7b9b45b87a653a29b312f, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: b1062ac5e8569f141aa564422af58564, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 775e2066280a7ea47943912952fa18a9, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 68ec9323d7c13004991bc3e1be76a3c4, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 01467a4f0dcc60840a4b000e9e6cfd2b, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: f921e6fea52d0ea4b90755d47357880c, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 46bd28c9a7728954d8ad581c318ca459, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 6b4924dc0cf7a184fb7d1e2390a8d01c, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: a3237834ee4f5f442afb6603a3263084, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 0df722dba09c36247855e1795a76b8a8, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 337cf919ec72eed46ad25a6e0e235318, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 3a442c3cc6e9cc345a3a6f5c8442bb43, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 267114678faaf5e4fa00dc32cd38362e, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: c5d3916083a8d1e448725007377fcd24, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 2ba3852671a9a0d4fb432c1d394de0ae, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 383fecbba44985145a65d9db8282b5b3, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 88ff92c8b1f6dda4f895b57fa5db915e, type: 2}
+  StopEvents:
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 801c3354de79b0c44b741c69efb1e68d, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 8e9d2d5ccb8c68f4cb873fe0cbc523b8, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 78606dd661802e44585b8701d41f2706, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: a5420ca0a5eb5494cb8a3056cdccd8aa, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 0661cefdbccad354392ae6272e435365, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 6315bcbc00999064294340d6ad0934fa, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 86e572dafa1f1374b9f9a2a2a8e89301, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: d66b7de48c5993c438845b1f680c09df, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 512cec3673b33584e8268d8cd47d4ef2, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 3917dceedf7b3a042924a4b9661c2a73, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: d3c50c93899072d468cd3a765651f572, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 30d85850a079f614e83f4d76d4bdab5f, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: b3dcf67f5e3bd8a46864377c3644f86c, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 989131c8ae8c4334d8ff1ceb28830a05, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: ac328b6b3e12b0142b625213cc2e6a0f, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 95ee59399eacf7346a713fd7bf9047fa, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 5501636e93d86b34db7407acc298c519, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e287eee6319eddc40b9e344fb9d515ce, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: f46f339030d301840928f9f1083c5d53, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 085c52a5d391b31459e8ed6b8c033894, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 127902ff3e0993b4c8578ee80f9cb915, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: acc9cb1c95f2c284395e6949e5710d68, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 5a11372c42839f24babaa4e5ca21e4a0, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 676f870911c1aa2438507ac5d4fe279f, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 2b11e6dad1e0c854db8f0b241e3223c5, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 0765485edb1348d4db9d4eae04040eb6, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 8c8a363e94299164bad0027ca2e9d401, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e934c12c38b438149bb20cda2340bc81, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 6bdfd904e2cfe7c4b9c389a4fe9dde08, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 9a571004f05ee0d4c820efed8e65d224, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: f8d04d18dc8fb6c40b9ed7db013aa366, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: d6f420aaff91c5f4a82a2abab9e00346, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 0a5538697f5f4f9469c6abb4210f5616, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 60b3b8b1559662f4790ce2a68c5c58b4, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: cec776fd87034f4439c1d4df4893f952, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 599a013298ee0d84e913f3e036b4ac62, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: b8029857ffdc4dd48a0ed12662b25b77, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 8661399765e9d6e46abca194b8304271, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 3b25c5d2b7c5be143b9ddb0909657557, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: da5f7c55bd3723a4aa220f743518d95c, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: a735f215a76621b46b42685ba67b0a06, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: b2d7e7f445c9be9429f15c82f27419e7, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 10e249cf24831ac4898ab765db114a78, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: d8c6ecadd605ed64893eaf08afb22a9a, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 7dc536b8647470240a460e9826c083b3, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 70f85f5467cc5a949a2ec1cb88fd0685, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 8873b684a7c93364dae8673b88b3a1bb, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 7f3d624cff7298c4680a6a5a972acee3, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 47e1502b3a495cc49927f9927d32fae0, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 438f85947862abf4297bc11d176920b1, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: d5edd558bf29ef14cbabd62645b1c007, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: d350eee1459bdb6428eb985003a7f589, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 6e435ac5f9ab6774b96da510c154e271, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 17f97d6af99770e46b30249c04587b80, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 90e1c6cf098a0d949bd3e89660fbb8bc, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 1bac1f8c260264146bcba9aaf6b20603, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 2485310d3e97ef34498b228ca94e9079, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 3f21bf3fc07b80141b0795e06a28d51f, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 6fb56003fbede3b4394357565a7bc923, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 563e192c90fd659419932cab9cddc701, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 84938116e873ff6468739e703668973e, type: 2}
