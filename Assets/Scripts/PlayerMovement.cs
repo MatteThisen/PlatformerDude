@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Transactions;
 using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -19,8 +20,6 @@ public class PlayerMovement : MonoBehaviour
 
     public LayerMask groundLayer;
     public float groundCheckRadius = 5f;
-
-    private float splineEndCheckRadius = 0.05f;
     [SerializeField] private float splineStartCheckRadius;
     private bool isOnSpline = false;
     private bool hasReachedEnd = false;
@@ -30,6 +29,9 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 splineExitVelocity;
     private float hookStartNormPosOnSpline;
     private int currentSplineIndex;
+
+    private enum HookState { None, Up, UpAndDown }
+    private HookState currentHookState;
 
     private SplineAnimate splineAnimateUp;
     private SplineAnimate splineAnimateDown;
@@ -93,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
         moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
 
         // If the player is on a spline, update the hook position and check for disconnect conditions
-        if (isOnSpline)
+        if (currentHookState != HookState.None)
         {
             timeSinceSplineStart += Time.deltaTime;
 
@@ -105,25 +107,29 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        if (playerInput.actions["HookUp"].WasPressedThisFrame() && !isOnSpline)
+        if (playerInput.actions["HookUp"].WasPressedThisFrame())
         {
-            if (!isOnSpline)
+            if (currentHookState == HookState.None)
             {
                 ConnectToSpline(hookUpObject);
             }
-            else if (isOnSpline)
+            else if (currentHookState == HookState.Up)
             {
                 DisconnectFromSpline(hookUpObject);
             }
+            else if (currentHookState == HookState.UpAndDown)
+            {
+                //DisconnectOnlyUpHook(hookUpObject);
+            }
         }
 
-        if (playerInput.actions["HookDown"].WasPressedThisFrame() && !isOnSpline)
+        if (playerInput.actions["HookDown"].WasPressedThisFrame() && currentHookState != HookState.None)
         {
-            if (!isOnSpline)
+            if (currentHookState == HookState.Up)
             {
                 ConnectToSpline(hookDownObject);
             }
-            else if (isOnSpline)
+            else if (currentHookState == HookState.UpAndDown)
             {
                 DisconnectFromSpline(hookDownObject);
             }
@@ -175,10 +181,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (hookObject == hookUpObject)
         {
+            currentHookState = HookState.None;
+            isHookUpActive = false;
             hookUpSprite.SetActive(false);
             hookUpRope.SetActive(false);
         } else
         {
+            currentHookState = HookState.Up;
+            isHookDownActive = false;
             hookDownSprite.SetActive(false);
             hookDownRope.SetActive(false);
         }
@@ -217,11 +227,15 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
+
+        SplineAnimate splineAnimate = hookObject.GetComponent<SplineAnimate>();
+
         isOnSpline = true;
         splineAnimate.StartOffset = hookStartNormPosOnSpline;
         splineAnimate.Container = allSplines[currentSplineIndex];
         splineAnimate.enabled = true;
         hookObject.SetActive(true);
+
         splineBoxBehaviour = currentSpline.GetComponentInParent<SplineBoxBehaviour>();
         if (splineBoxBehaviour != null) {
             splineBoxBehaviour.PlayNote();
@@ -232,6 +246,20 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Collided with SplineBox");
 
         hookJoint.enabled = true;
+
+        if (hookObject == hookUpObject)
+        {
+            currentHookState = HookState.Up;
+            isHookUpActive = true;
+            hookUpRope.SetActive(true);
+            hookUpSprite.SetActive(true);
+        } else
+        {
+            currentHookState = HookState.UpAndDown;
+            isHookDownActive = true;
+            hookDownRope.SetActive(true);
+            hookDownSprite.SetActive(true);
+        }
     }
 
     void HookUpdater()
@@ -255,9 +283,6 @@ public class PlayerMovement : MonoBehaviour
 
             hookJoint.target = new Vector2(targetPosition.x, targetPosition.y);
 
-            hookUpSprite.SetActive(true);
-            hookUpRope.SetActive(true);
-
         }
 
         if (isHookDownActive)
@@ -270,9 +295,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 hasReachedEnd = true;
             }
-
-            hookDownSprite.SetActive(true);
-            hookDownRope.SetActive(true);
         }
     }
 

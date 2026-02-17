@@ -1185,8 +1185,8 @@ MonoBehaviour:
   groundCheckRadius: 0.7
   splineStartCheckRadius: 2
   splineExitVelocity: {x: 0, y: 0}
-  splineAnimate: {fileID: 2045156320}
-  hookObject: {fileID: 2045156315}
+  hookUpObject: {fileID: 2045156315}
+  hookDownObject: {fileID: 1063053815}
 --- !u!50 &665607432
 Rigidbody2D:
   serializedVersion: 5
