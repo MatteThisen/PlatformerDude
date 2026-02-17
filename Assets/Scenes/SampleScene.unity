@@ -548,7 +548,7 @@ Transform:
   m_GameObject: {fileID: 327260656}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 93.2, y: 4.57, z: 0}
+  m_LocalPosition: {x: 115.53, y: 4.57, z: 0}
   m_LocalScale: {x: 1.0567707, y: 35.942482, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1184,7 +1184,9 @@ MonoBehaviour:
     m_Bits: 8
   groundCheckRadius: 0.7
   splineStartCheckRadius: 2
+  splineRaycastRadius: 1
   splineExitVelocity: {x: 0, y: 0}
+  currentHookState: 0
   hookUpObject: {fileID: 2045156315}
   hookDownObject: {fileID: 1063053815}
 --- !u!50 &665607432
@@ -2819,8 +2821,8 @@ Transform:
   m_GameObject: {fileID: 1614515672}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 75.582, y: -8.01, z: 0}
-  m_LocalScale: {x: 36.39898, y: 0.7764042, z: 1}
+  m_LocalPosition: {x: 86.4412, y: -8.01, z: 0}
+  m_LocalScale: {x: 58.118248, y: 0.7764042, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2835,35 +2837,35 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 552155722596926719, guid: 914eb73e5f828dc47b7c25213dd7525d, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[0].Position.x
-      value: 35.8
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 552155722596926719, guid: 914eb73e5f828dc47b7c25213dd7525d, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[0].Position.y
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 552155722596926719, guid: 914eb73e5f828dc47b7c25213dd7525d, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[1].Position.x
-      value: 45.95
+      value: 111.14
       objectReference: {fileID: 0}
     - target: {fileID: 552155722596926719, guid: 914eb73e5f828dc47b7c25213dd7525d, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[1].Position.y
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 552155722596926719, guid: 914eb73e5f828dc47b7c25213dd7525d, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[0].TangentIn.z
-      value: -1.0150002
+      value: -3.914
       objectReference: {fileID: 0}
     - target: {fileID: 552155722596926719, guid: 914eb73e5f828dc47b7c25213dd7525d, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[1].TangentIn.z
-      value: -1.0150002
+      value: -3.914
       objectReference: {fileID: 0}
     - target: {fileID: 552155722596926719, guid: 914eb73e5f828dc47b7c25213dd7525d, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[0].TangentOut.z
-      value: 1.0150002
+      value: 3.914
       objectReference: {fileID: 0}
     - target: {fileID: 552155722596926719, guid: 914eb73e5f828dc47b7c25213dd7525d, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[1].TangentOut.z
-      value: 1.0150002
+      value: 3.914
       objectReference: {fileID: 0}
     - target: {fileID: 552155722596926719, guid: 914eb73e5f828dc47b7c25213dd7525d, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[0].Rotation.value.w
@@ -2897,17 +2899,21 @@ PrefabInstance:
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[1].Rotation.value.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4398513321389482758, guid: 914eb73e5f828dc47b7c25213dd7525d, type: 3}
+      propertyPath: thisNote
+      value: 32
+      objectReference: {fileID: 0}
     - target: {fileID: 8364765793324254168, guid: 914eb73e5f828dc47b7c25213dd7525d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8364765793324254168, guid: 914eb73e5f828dc47b7c25213dd7525d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8364765793324254168, guid: 914eb73e5f828dc47b7c25213dd7525d, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8364765793324254168, guid: 914eb73e5f828dc47b7c25213dd7525d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2948,6 +2954,10 @@ PrefabInstance:
     - target: {fileID: 8364765793324254168, guid: 914eb73e5f828dc47b7c25213dd7525d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364765793324254168, guid: 914eb73e5f828dc47b7c25213dd7525d, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8380060901045694654, guid: 914eb73e5f828dc47b7c25213dd7525d, type: 3}
       propertyPath: m_Name
