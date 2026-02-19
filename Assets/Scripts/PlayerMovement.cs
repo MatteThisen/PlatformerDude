@@ -17,7 +17,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 splineVelocityCalcPoint1;
     private Vector2 splineVelocityCalcPoint2;
     public Vector2 splineExitVelocity;
-    private float hookStartNormPosOnSpline;
+    private float hookUpStartNormPosOnSpline;
+    private float hookDownStartNormPosOnSpline;
     private int currentUpSplineIndex;
     private int currentDownSplineIndex;
 
@@ -186,6 +187,7 @@ public class PlayerMovement : MonoBehaviour
             hookUpRope.SetActive(false);
             splineBoxBehaviour = currentUpSpline.GetComponentInParent<SplineBoxBehaviour>();
             currentUpSpline = null;
+            hookUpStartNormPosOnSpline = 0f;
         }
         else
         {
@@ -195,6 +197,7 @@ public class PlayerMovement : MonoBehaviour
             hookDownRope.SetActive(false);
             splineBoxBehaviour = currentDownSpline.GetComponentInParent<SplineBoxBehaviour>();
             currentDownSpline = null;
+            hookDownStartNormPosOnSpline = 0f;
         }
 
         SplineAnimate splineAnimate = hookObject.GetComponent<SplineAnimate>();
@@ -226,8 +229,8 @@ public class PlayerMovement : MonoBehaviour
 
         SplineAnimate splineAnimate = hookObject.GetComponent<SplineAnimate>();
 
-        splineAnimate.StartOffset = hookStartNormPosOnSpline;
         splineAnimate.Container = hookObject == hookUpObject ? allSplines[currentUpSplineIndex] : allSplines[currentDownSplineIndex];
+        splineAnimate.StartOffset = hookObject == hookUpObject ? hookUpStartNormPosOnSpline : hookDownStartNormPosOnSpline;
         splineAnimate.enabled = true;
         hookObject.SetActive(true);
         SplineBoxBehaviour splineBoxBehaviour = null;
@@ -236,10 +239,9 @@ public class PlayerMovement : MonoBehaviour
         splineAnimate.Play();
         Debug.Log("Collided with SplineBox");
 
-        hookJoint.enabled = true;
-
         if (hookObject == hookUpObject)
         {
+            hookJoint.enabled = true;
             currentHookState = HookState.Up;
             isHookUpActive = true;
             hookUpRope.SetActive(true);
@@ -265,7 +267,7 @@ public class PlayerMovement : MonoBehaviour
 
             SplineAnimate hookUpSplineAnimate = hookUpObject.GetComponent<SplineAnimate>();
             // t finds the normalized time along the spline, as well as the offset from the start of the spline found in FindClosestSplinePoint
-            float tUp = hookUpSplineAnimate.NormalizedTime + hookStartNormPosOnSpline;
+            float tUp = hookUpSplineAnimate.NormalizedTime + hookUpStartNormPosOnSpline;
 
             if (tUp > 0.99f)
             {
@@ -295,7 +297,7 @@ public class PlayerMovement : MonoBehaviour
         {
             SplineAnimate hookDownSplineAnimate = hookDownObject.GetComponent<SplineAnimate>();
             // t finds the normalized time along the spline, as well as the offset from the start of the spline found in FindClosestSplinePoint
-            float tDown = hookDownSplineAnimate.NormalizedTime + hookStartNormPosOnSpline;
+            float tDown = hookDownSplineAnimate.NormalizedTime + hookDownStartNormPosOnSpline;
 
             if (tDown > 0.99f)
             {
@@ -308,9 +310,8 @@ public class PlayerMovement : MonoBehaviour
     {
         bool isSplineWithinRange = false;
         float minDist = float.MaxValue;
-
+        float hookStartNormPosOnSpline = 0f;
         SplineContainer container = null;
-        hookStartNormPosOnSpline = 0f;
 
         Vector2 raycastDir = (hookObject == hookUpObject) ? Vector2.up : Vector2.down;
 
@@ -347,12 +348,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 currentUpSpline = container;
                 currentUpSplineIndex = System.Array.IndexOf(allSplines, container);
+                hookUpStartNormPosOnSpline = hookStartNormPosOnSpline;
                 Debug.Log($"Up spline index: {currentUpSplineIndex}");
             }
             else
             {
                 currentDownSpline = container;
                 currentDownSplineIndex = System.Array.IndexOf(allSplines, container);
+                hookDownStartNormPosOnSpline = hookStartNormPosOnSpline;
                 Debug.Log($"Down spline index: {currentDownSplineIndex}");
             }
             isSplineWithinRange = true;
@@ -373,9 +376,11 @@ public class PlayerMovement : MonoBehaviour
         currentUpSplineIndex = currentDownSplineIndex;
         currentUpSpline = currentDownSpline;
         SplineAnimate hookUpSplineAnimate = hookUpObject.GetComponent<SplineAnimate>();
+        SplineAnimate hookDownSplineAnimate = hookDownObject.GetComponent<SplineAnimate>();
         hookUpSplineAnimate.Container = currentUpSpline;
-        //hookUpSplineAnimate.StartOffset = hookStartNormPosOnSpline;
-        hookUpSplineAnimate.NormalizedTime = hookDownObject.GetComponent<SplineAnimate>().NormalizedTime;
+        hookUpSplineAnimate.StartOffset = hookDownSplineAnimate.StartOffset;
+        hookUpSplineAnimate.NormalizedTime = hookDownSplineAnimate.NormalizedTime;
+
 
         isHookDownActive = false;
         hookDownSprite.SetActive(false);

@@ -18,7 +18,8 @@ public class HookRope : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         player = GameObject.Find("Player");
-        hookObject = GameObject.Find("PlayerHook");
+        
+        hookObject = hookOrientationUp ? GameObject.Find("PlayerHook") : GameObject.Find("PlayerHookDown");
 
         if (!hookOrientationUp)
         {
