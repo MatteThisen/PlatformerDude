@@ -267,7 +267,7 @@ public class PlayerMovement : MonoBehaviour
 
             SplineAnimate hookUpSplineAnimate = hookUpObject.GetComponent<SplineAnimate>();
             // t finds the normalized time along the spline, as well as the offset from the start of the spline found in FindClosestSplinePoint
-            float tUp = hookUpSplineAnimate.NormalizedTime + hookUpStartNormPosOnSpline;
+            float tUp = hookUpSplineAnimate.NormalizedTime + hookUpSplineAnimate.StartOffset;
 
             if (tUp > 0.99f)
             {
