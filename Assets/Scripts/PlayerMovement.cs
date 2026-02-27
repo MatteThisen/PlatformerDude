@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
 
         moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
 
-        // If the player is on a spline, update the hook position and check for disconnect conditions
+        /*// If the player is on a spline, update the hook position and check for disconnect conditions
         if (currentHookState != HookState.None)
         {
 
@@ -101,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
 
             HookUpdater();
 
-        }
+        }*/
 
         if (playerInput.actions["HookUp"].WasPressedThisFrame())
         {
@@ -144,6 +144,12 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector2 distanceTravelled = splineVelocityCalcPoint2 - splineVelocityCalcPoint1;
             splineExitVelocity = distanceTravelled / Time.fixedDeltaTime;
+
+            rb.gravityScale = 0;
+
+            Vector2 playerVelocity = rb.linearVelocity;
+
+            HookUpdater();
         }
 
     }
