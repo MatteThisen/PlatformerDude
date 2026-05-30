@@ -8,7 +8,7 @@ public class IdleState : EnemyState
 
     public override void EnterState()
     {
-        
+        enemyAI.SwitchEnemySprite(EnemyAI.EnemyStateType.Idle);
     }
 
     public override void ExitState()
@@ -18,6 +18,6 @@ public class IdleState : EnemyState
 
     public override void UpdateState()
     {
-        
+        enemyAI.CheckForPlatformEdge();
     }
 }

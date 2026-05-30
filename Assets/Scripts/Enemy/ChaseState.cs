@@ -8,7 +8,7 @@ public class ChaseState : EnemyState
 
     public override void EnterState()
     {
-
+        enemyAI.SwitchEnemySprite(EnemyAI.EnemyStateType.Chase);
     }
 
     public override void ExitState()

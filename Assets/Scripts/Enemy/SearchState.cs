@@ -8,7 +8,7 @@ public class SearchState : EnemyState
 
     public override void EnterState()
     {
-
+        enemyAI.SwitchEnemySprite(EnemyAI.EnemyStateType.Search);
     }
 
     public override void ExitState()

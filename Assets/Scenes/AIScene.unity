@@ -284,7 +284,7 @@ Transform:
   m_GameObject: {fileID: 238303715}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.71, y: 2.55, z: 0}
+  m_LocalPosition: {x: -13.62, y: 2.55, z: 0}
   m_LocalScale: {x: 12.0936, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -559,7 +559,7 @@ Transform:
   m_GameObject: {fileID: 686998985}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.75, y: 2.55, z: 0}
+  m_LocalPosition: {x: 14.01, y: 2.55, z: 0}
   m_LocalScale: {x: 12.0936, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -874,7 +874,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &969550830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1127,6 +1127,16 @@ MonoBehaviour:
   sightRange: 8
   sightAngle: 90
   searchTimeout: 4
+  platformLayerName: groundLayer
+  platformLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  detectionRadius: 5
+  rayCount: 100
+  enemySprites:
+  - {fileID: 21300000, guid: 4f6e718a1aeef3c49b1131f95f638d0b, type: 3}
+  - {fileID: 21300000, guid: 31b85093134851144a6e82d5b423e19f, type: 3}
+  - {fileID: 21300000, guid: 3e9fdeee60b768d438bed9a7080648e8, type: 3}
 --- !u!212 &1820690754
 SpriteRenderer:
   serializedVersion: 2
@@ -1176,7 +1186,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4f6e718a1aeef3c49b1131f95f638d0b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1195,7 +1205,7 @@ Transform:
   m_GameObject: {fileID: 1820690752}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.42752, y: 0.48154, z: 0}
+  m_LocalPosition: {x: -0.42752, y: -0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1228,8 +1238,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &1820690757
-CircleCollider2D:
+--- !u!61 &1820690757
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1263,7 +1273,17 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.64, y: 0.64}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.64, y: 0.64}
+  m_EdgeRadius: 0
 --- !u!1 &1822866392
 GameObject:
   m_ObjectHideFlags: 0
