@@ -1,17 +1,26 @@
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Splines;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
+using static UnityEngine.UI.Image;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Movement Stats")]
     public float speed = 5f;
     public float maxSpeed = 10f;
     public float acceleration = 5f;
     public float deceleration = 5f;
     public float jumpForce = 10f;
 
+    [Header("Ground Check Parameters")]
     public LayerMask groundLayer;
-    public float groundCheckRadius = 5f;
+    public float groundCheckDistance = 5f;
+    public List<Collider2D> traversedPlatforms;
+
+    [Header("Hook And Spline Parameters")]
     [SerializeField] private float splineStartCheckRadius;
     [SerializeField] private float splineRaycastRadius;
     private Vector2 splineVelocityCalcPoint1;
@@ -23,9 +32,10 @@ public class PlayerMovement : MonoBehaviour
     private int currentDownSplineIndex;
 
     private enum HookState { None, Up, UpAndDown }
-    [SerializeField] private HookState currentHookState = HookState.None;
+    private HookState currentHookState = HookState.None;
 
     private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
     private Vector2 moveInput;
     private bool isGrounded;
     private PlayerInput playerInput;
@@ -49,9 +59,8 @@ public class PlayerMovement : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         hookJoint = GetComponent<TargetJoint2D>();
-
-
 
         hookUpSprite = hookUpObject.GetComponentInChildren<SpriteRenderer>().gameObject;
         hookUpRope = hookUpObject.GetComponentInChildren<LineRenderer>().gameObject;
@@ -87,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(transform.position, groundCheckRadius, groundLayer);
+        //isGrounded = Physics2D.OverlapCircle(transform.position, groundCheckRadius, groundLayer);
 
         moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
 
@@ -105,7 +114,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (playerInput.actions["HookUp"].WasPressedThisFrame())
         {
-           
             switch (currentHookState)
             {
                 case HookState.None:
@@ -151,7 +159,10 @@ public class PlayerMovement : MonoBehaviour
 
             HookUpdater();
         }
-
+        else
+        {
+            CheckGroundStatus();
+        }
     }
 
     void ApplyMovement()
@@ -263,7 +274,7 @@ public class PlayerMovement : MonoBehaviour
             splineBoxBehaviour = currentDownSpline.GetComponentInParent<SplineBoxBehaviour>();
         }
 
-            splineBoxBehaviour.PlayNote();
+        splineBoxBehaviour.PlayNote();
     }
 
     void HookUpdater()
@@ -394,6 +405,52 @@ public class PlayerMovement : MonoBehaviour
         currentDownSpline = null;
 
         HookUpdater();
+    }
+
+    void CheckGroundStatus()
+    {
+
+        var bounds = spriteRenderer.bounds;
+
+        Vector2 locationForRaycastRight = (Vector2)transform.position + (Vector2.right * bounds.extents.x);
+        Vector2 locationForRaycastLeft = (Vector2)transform.position + (Vector2.left * bounds.extents.x);
+
+        var hitRight = Physics2D.Raycast(locationForRaycastRight, Vector2.down, groundCheckDistance, groundLayer);
+        var hitLeft = Physics2D.Raycast(locationForRaycastLeft, Vector2.down, groundCheckDistance, groundLayer);
+
+
+        if (hitRight.collider != null || hitLeft.collider != null && rb.IsTouchingLayers(groundLayer))
+        {
+            isGrounded = true;
+            LogPlatformsTraversed(hitRight.collider != null ? hitRight.collider : hitLeft.collider);
+        }
+        else
+        {
+            isGrounded = false;
+        }
+    }
+
+    void LogPlatformsTraversed(Collider2D platform)
+    {
+        // If the platform has not been traversed before, add it to the list and log it
+        if (!traversedPlatforms.Contains(platform))
+        {
+            traversedPlatforms.Add(platform);
+            Debug.Log($"New platform traversed: {platform.name}");
+        } else
+        {
+            Debug.Log($"Already traversed platform: {platform.name}");
+            traversedPlatforms.Remove(platform);
+            traversedPlatforms.Add(platform);
+        }
+
+        // If the list exceeds 5 platforms, remove the oldest entry
+        if (traversedPlatforms.Count > 5)
+        {
+            traversedPlatforms.RemoveAt(0);
+        }
+        Debug.Log($"Current traversed platforms: {string.Join(", ", traversedPlatforms.ConvertAll(p => p.name))}");
+
     }
 
 }

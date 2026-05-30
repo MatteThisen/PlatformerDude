@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
@@ -14,6 +15,8 @@ public class EnemyAI : MonoBehaviour
     public float sightRange = 8f;
     public float sightAngle = 90f;   // degrees, total cone width
     public float searchTimeout = 4f;    // seconds before giving up and going Idle
+    PlayerMovement playerMovement;
+    List<Collider2D> lastSeenPlayerPlatforms;
 
     [Header("Platform Detection")]
     public string platformLayerName = "groundLayer";
@@ -25,9 +28,10 @@ public class EnemyAI : MonoBehaviour
 
 
     int directionX = 1;
-    float speed = 3f;
+    public float speed = 3f;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+    private Collider2D enemyCollider;
     private bool isSpriteFlipped = false;
     [SerializeField] private List<Sprite> enemySprites; // Assign in inspector: 0 = Idle, 1 = Search, 2 = Chase
 
@@ -46,6 +50,8 @@ public class EnemyAI : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        enemyCollider = GetComponent<Collider2D>();
+        playerMovement = player.gameObject.GetComponent<PlayerMovement>();
         SetState(EnemyStateType.Idle);
     }
 
@@ -76,28 +82,35 @@ public class EnemyAI : MonoBehaviour
     // How long we've been in the current state
     public float TimeInState => Time.time - StateEnterTime;
 
-    // Shared perception — states call this rather than duplicating logic
+
     public bool CanSeePlayer()
     {
         if (player == null) return false;
 
+        // If player is outside of sight range, no need to check angle or line of sight
         Vector2 toPlayer = player.position - transform.position;
+        //Debug.Log($"[EnemyAI] Checking sight: Player at {player.position}, Enemy at {transform.position}, ToPlayer vector: {toPlayer}, Magnitude: {toPlayer.magnitude}");
         if (toPlayer.magnitude > sightRange) return false;
 
-        // Facing direction based on velocity (swap for a facing field if you prefer)
+        // Facing direction based on velocity
         Vector2 facing = GetComponent<Rigidbody2D>().linearVelocity.normalized;
+        //Debug.Log($"[EnemyAI] Facing direction: {facing}");
         if (facing == Vector2.zero) facing = Vector2.right;
 
+        // Angle check to see if player is within sight cone
         float angle = Vector2.Angle(facing, toPlayer);
+        //Debug.Log($"[EnemyAI] Angle to player: {angle} degrees (Sight cone: {sightAngle} degrees)");
         if (angle > sightAngle * 0.5f) return false;
 
         // Line-of-sight check
-        var hit = Physics2D.Raycast(transform.position, toPlayer.normalized,
-                                    sightRange, LayerMask.GetMask("Default", "Platform"));
+        var hit = Physics2D.Raycast(transform.position, toPlayer.normalized, sightRange, LayerMask.GetMask("Default", "Platform"));
+        //Debug.Log($"[EnemyAI] Line-.Raycast hit: {(hit.collider != null ? hit.collider.name : "None")} (Layer: {(hit.collider != null ? LayerMask.LayerToName(hit.collider.gameObject.layer) : "N/A")})");
         return hit.collider != null && hit.collider.CompareTag("Player");
     }
 
-    public void SetTargetPosition(Vector2 pos) => LastKnownPlayerPos = pos;
+    public void SetLastSeenPlayerPosition() => LastKnownPlayerPos = player.position;
+
+    public void SetLastSeenPlayerPlatforms() => lastSeenPlayerPlatforms = playerMovement.traversedPlatforms;
 
     public void MoveAlongPlatform()
     {
@@ -112,21 +125,21 @@ public class EnemyAI : MonoBehaviour
         Vector2 origin = (Vector2)transform.position + Vector2.down * 0.5f; // Adjust as needed
         Vector2 direction = Vector2.down;
         Vector2 movementDirection = new Vector2(directionX, 0).normalized;
-        float distance = 5f; // Adjust as needed
-        var bounds = GetComponent<SpriteRenderer>().bounds;
+        float distance = 1f; // Adjust as needed
+        var bounds = spriteRenderer.bounds;
 
         Vector2 locationForRaycast = origin + (movementDirection * bounds.extents.x);
 
         var hit = Physics2D.Raycast(locationForRaycast, direction, distance, platformLayer);
-        Debug.Log($"[EnemyAI] Raycast hit: {(hit.collider != null ? hit.collider.name : "None")} (Layer: {(hit.collider != null ? LayerMask.LayerToName(hit.collider.gameObject.layer) : "N/A")})");
-        Debug.Log($"Current platform: {(currentPlatform != null ? currentPlatform.name : "None")}");
+        //Debug.Log($"[EnemyAI] Raycast hit: {(hit.collider != null ? hit.collider.name : "None")} (Layer: {(hit.collider != null ? LayerMask.LayerToName(hit.collider.gameObject.layer) : "N/A")})");
+        //Debug.Log($"Current platform: {(currentPlatform != null ? currentPlatform.name : "None")}");
         //Debug.Log("hit collider layer " + hit.collider.gameObject.layer);
-        Debug.Log("Platform layer " + LayerMask.NameToLayer(platformLayerName));
+        //Debug.Log("Platform layer " + LayerMask.NameToLayer(platformLayerName));
 
         if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer(platformLayerName))
         {
             rb.linearVelocityX = directionX * speed;
-            Debug.Log("Movement along platform started");
+            //Debug.Log("Movement along platform started");
             currentPlatform = hit.collider;
         } else if (hit.collider == null)
         {
@@ -173,17 +186,19 @@ public class EnemyAI : MonoBehaviour
 
         for (int i = 0; i <= rayCount; i++)
         {
-            float angle = baseAngle - 90f + (180f / rayCount) * i;
+            float angle = baseAngle - 80f + (160f / rayCount) * i;
             float rad = angle * Mathf.Deg2Rad;
             Vector2 rayDir = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDir, detectionRadius, platformLayer);
+            RaycastHit2D[] allHits = Physics2D.RaycastAll(transform.position, rayDir, detectionRadius, platformLayer);
 
-            // Avoid adding the same platform multiple times and avoid adding the platform that the enemy is standing on
-            if (hit && !seen.Contains(hit.collider) && hit.collider != currentPlatform)
+            foreach (RaycastHit2D hit in allHits)
             {
-                hits.Add(hit);
-                seen.Add(hit.collider);
+                if (hit.collider != currentPlatform && !seen.Contains(hit.collider))
+                {
+                    hits.Add(hit);
+                    seen.Add(hit.collider);
+                }
             }
         }
 
@@ -192,25 +207,65 @@ public class EnemyAI : MonoBehaviour
 
     public void InitiateJump(List<RaycastHit2D> jumpHits)
     {
-        // Find the closest platform hit
-        RaycastHit2D closest = jumpHits[0];
-        float closestDist = Vector2.Distance(transform.position, jumpHits[0].point);
-        foreach (var h in jumpHits)
-        {
-            float d = Vector2.Distance(transform.position, h.point);
-            if (d < closestDist) { closestDist = d; closest = h; }
-        }
+        RaycastHit2D target = FindTargetPlatform(jumpHits, CurrentStateType);
 
         // Find the top surface + closest horizontal edge of that platform
-        Bounds b = closest.collider.bounds;
-        float closestEdgeX = (Mathf.Abs(b.min.x - transform.position.x) < Mathf.Abs(b.max.x - transform.position.x))
-            ? b.min.x + b.extents.x * 0.25f   // land slightly inward from the left edge
-            : b.max.x - b.extents.x * 0.25f;  // land slightly inward from the right edge
+        Bounds b = target.collider.bounds;
+        float landingSpotOffset = 0.15f; // Adjust as needed to avoid landing right on the edge
+        float closestEdgeX = (Mathf.Abs(b.min.x - transform.position.x) < Mathf.Abs(b.max.x - transform.position.x)) ? b.min.x + b.extents.x * landingSpotOffset : b.max.x - b.extents.x * landingSpotOffset;
 
         Vector2 landingTarget = new Vector2(closestEdgeX, b.max.y + spriteRenderer.bounds.extents.y);
 
         StartCoroutine(JumpArc(landingTarget));
     }
+
+    private RaycastHit2D FindTargetPlatform(List<RaycastHit2D> jumpHits, EnemyStateType currentState)
+    {
+        RaycastHit2D bestHit = jumpHits[0];
+        //Debug.Log($"[EnemyAI] Evaluating {jumpHits.Count} jump targets in state {CurrentStateType}");
+        //Debug.Log($"[EnemyAI] hit platforms: {string.Join(", ", jumpHits.ConvertAll(h => h.collider.name))}");
+
+
+        switch (currentState)
+        {
+            case EnemyStateType.Idle:
+                // In Idle, choose random platform to jump to
+                bestHit = jumpHits[UnityEngine.Random.Range(0, jumpHits.Count - 1)];
+                break;
+            default:
+                // In Search, prefer platforms that are in the direction of the last known player position
+
+                Dictionary<Collider2D, int> filteredHits = new Dictionary<Collider2D, int>();
+
+                for (int i = 0; i < jumpHits.Count; i++)
+                {
+                    Debug.Log(lastSeenPlayerPlatforms);
+                    int index = lastSeenPlayerPlatforms.IndexOf(jumpHits[i].collider);
+                    if (index != -1)
+                    {
+                        filteredHits.Add(jumpHits[i].collider, index);
+                    }
+                }
+
+                if (filteredHits.Count > 0)
+                {
+                    // Sort by how recently the player was on that platform
+                    var sortedHits = new List<KeyValuePair<Collider2D, int>>(filteredHits);
+                    sortedHits.Sort((a, b) => b.Value.CompareTo(a.Value));
+                    // Take the most recent one
+                    Collider2D targetCollider = sortedHits[0].Key;
+                    bestHit = jumpHits.Find(h => h.collider == targetCollider);
+                }
+                else
+                {
+                    bestHit = jumpHits[UnityEngine.Random.Range(0, jumpHits.Count - 1)];
+                }
+
+                break;
+        }
+        return bestHit;
+    }
+
 
     private IEnumerator JumpArc(Vector2 target)
     {
@@ -218,6 +273,7 @@ public class EnemyAI : MonoBehaviour
         Vector2 start = transform.position;
         float duration = CalculateJumpDuration(start, target);
         float elapsed = 0f;
+        enemyCollider.enabled = false;
 
         // Disable normal movement while jumping
         rb.gravityScale = 0f;
@@ -240,6 +296,7 @@ public class EnemyAI : MonoBehaviour
         rb.MovePosition(target);
         rb.gravityScale = 1f;
         rb.linearVelocity = Vector2.zero;
+        enemyCollider.enabled = true;
         isJumping = false;
     }
 
