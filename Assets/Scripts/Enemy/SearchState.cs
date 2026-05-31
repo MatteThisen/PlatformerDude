@@ -25,13 +25,17 @@ public class SearchState : EnemyState
 
     public override void UpdateState()
     {
-        if (hasCheckedLastSeenPosition)
+        if (enemyAI.CanSeePlayer())
+        {
+            enemyAI.SetState(EnemyAI.EnemyStateType.Chase);
+        }
+        else if (enemyAI.TimeInState > 5f)
         {
             enemyAI.SetState(EnemyAI.EnemyStateType.Idle);
         }
         else
         {
-
+            enemyAI.CheckForPlatformEdge();
         }
     }
 }

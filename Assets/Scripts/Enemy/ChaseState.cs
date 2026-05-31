@@ -23,8 +23,21 @@ public class ChaseState : EnemyState
 
     public override void UpdateState()
     {
-        enemyAI.SetLastSeenPlayerPosition();
         enemyAI.SetLastSeenPlayerPlatforms();
-        enemyAI.CheckForPlatformEdge();
+
+        if (enemyAI.CanSeePlayer())
+        {
+            enemyAI.SetLastSeenPlayerTime();
+            enemyAI.CheckForPlatformEdge();
+        }
+        else if (Time.time - enemyAI.timeWhenPlayerSeenLast > 5f)
+        {
+            enemyAI.SetState(EnemyAI.EnemyStateType.Search);
+        }
+        else
+        {
+            enemyAI.CheckForPlatformEdge();
+        }
+
     }
 }

@@ -40,7 +40,7 @@ public class EnemyAI : MonoBehaviour
 
 
     // Shared data states can read/write
-    public Vector2 LastKnownPlayerPos { get; set; }
+    public float timeWhenPlayerSeenLast { get; set; }
     public float StateEnterTime { get; private set; }
 
     EnemyState _current;
@@ -103,12 +103,12 @@ public class EnemyAI : MonoBehaviour
         if (angle > sightAngle * 0.5f) return false;
 
         // Line-of-sight check
-        var hit = Physics2D.Raycast(transform.position, toPlayer.normalized, sightRange, LayerMask.GetMask("Default", "Platform"));
+        var hit = Physics2D.Raycast(transform.position, toPlayer.normalized, sightRange, LayerMask.GetMask("Default", "groundLayer"));
         //Debug.Log($"[EnemyAI] Line-.Raycast hit: {(hit.collider != null ? hit.collider.name : "None")} (Layer: {(hit.collider != null ? LayerMask.LayerToName(hit.collider.gameObject.layer) : "N/A")})");
         return hit.collider != null && hit.collider.CompareTag("Player");
     }
 
-    public void SetLastSeenPlayerPosition() => LastKnownPlayerPos = player.position;
+    public void SetLastSeenPlayerTime() => timeWhenPlayerSeenLast = Time.time;
 
     public void SetLastSeenPlayerPlatforms() => lastSeenPlayerPlatforms = playerMovement.traversedPlatforms;
 
@@ -124,7 +124,32 @@ public class EnemyAI : MonoBehaviour
 
         Vector2 origin = (Vector2)transform.position + Vector2.down * 0.5f; // Adjust as needed
         Vector2 direction = Vector2.down;
-        Vector2 movementDirection = new Vector2(directionX, 0).normalized;
+        Vector2 movementDirection;
+
+        if (CurrentStateType == EnemyStateType.Chase && player != null && currentPlatform == lastSeenPlayerPlatforms[lastSeenPlayerPlatforms.Count - 1])
+        {
+            Vector2 toPlayer = player.position - transform.position;
+
+            if (Mathf.Abs(toPlayer.x) > 0.8f)
+            {
+                movementDirection = new Vector2(toPlayer.x, 0).normalized;
+                directionX = (movementDirection.x > 0) ? 1 : -1;
+            }
+            else
+            {
+                movementDirection = Vector2.zero; // Player is directly above/below, so no horizontal movement
+                directionX = 0;
+            }
+
+        }
+        else
+        { 
+            movementDirection = new Vector2(directionX, 0).normalized;
+        } 
+
+        
+        
+        
         float distance = 1f; // Adjust as needed
         var bounds = spriteRenderer.bounds;
 
@@ -233,13 +258,12 @@ public class EnemyAI : MonoBehaviour
                 bestHit = jumpHits[UnityEngine.Random.Range(0, jumpHits.Count - 1)];
                 break;
             default:
-                // In Search, prefer platforms that are in the direction of the last known player position
+                // In Search or Chase, prefer platforms that the player has recently been on
 
                 Dictionary<Collider2D, int> filteredHits = new Dictionary<Collider2D, int>();
 
                 for (int i = 0; i < jumpHits.Count; i++)
                 {
-                    Debug.Log(lastSeenPlayerPlatforms);
                     int index = lastSeenPlayerPlatforms.IndexOf(jumpHits[i].collider);
                     if (index != -1)
                     {
