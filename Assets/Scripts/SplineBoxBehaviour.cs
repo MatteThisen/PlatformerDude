@@ -80,15 +80,15 @@ public class SplineBoxBehaviour : MonoBehaviour
         GS6
     }
 
-    public List<AK.Wwise.Event> StartEvents = new List<AK.Wwise.Event> { };
-    public List<AK.Wwise.Event> StopEvents = new List<AK.Wwise.Event> { };
+    /*public List<AK.Wwise.Event> StartEvents = new List<AK.Wwise.Event> { };
+    public List<AK.Wwise.Event> StopEvents = new List<AK.Wwise.Event> { };*/
 
     private void Awake()
     {
         float splineLength = splineContainer.CalculateLength();
     }
     
-    public void PlayNote()
+   /* public void PlayNote()
     {
         int noteIndex = (int)thisNote;
 
@@ -107,5 +107,5 @@ public class SplineBoxBehaviour : MonoBehaviour
             StopEvents[noteIndex].Post(gameObject);
             Debug.Log($"Stopped note {thisNote} on {thisInstrument}");
         }
-    }
+    }*/
 }

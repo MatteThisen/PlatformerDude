@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Splines;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
-using static UnityEngine.UI.Image;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -218,7 +216,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (splineBoxBehaviour != null)
         {
-            splineBoxBehaviour.StopNote();
+            //splineBoxBehaviour.StopNote();
         }
         splineBoxBehaviour = null;
 
@@ -267,7 +265,7 @@ public class PlayerMovement : MonoBehaviour
             splineBoxBehaviour = currentDownSpline.GetComponentInParent<SplineBoxBehaviour>();
         }
 
-        splineBoxBehaviour.PlayNote();
+        //splineBoxBehaviour.PlayNote();
     }
 
     void HookUpdater()
@@ -381,7 +379,7 @@ public class PlayerMovement : MonoBehaviour
 
     void DisconnectOnlyUpHook()
     {
-        currentUpSpline.GetComponentInParent<SplineBoxBehaviour>().StopNote();
+       // currentUpSpline.GetComponentInParent<SplineBoxBehaviour>().StopNote();
         currentHookState = HookState.Up;
         currentUpSplineIndex = currentDownSplineIndex;
         currentUpSpline = currentDownSpline;

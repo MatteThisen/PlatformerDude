@@ -1,9 +1,9 @@
 using UnityEngine;
-using AK.Wwise;
+//using AK.Wwise;
 public class HookAudio : MonoBehaviour
 {
 
-    public AK.Wwise.Event hookAttachEvent;
+   /* public AK.Wwise.Event hookAttachEvent;
     public AK.Wwise.Event hookDetachEvent;
     public AK.Wwise.RTPC cableValue;
 
@@ -16,5 +16,5 @@ public class HookAudio : MonoBehaviour
         float rtpcValue = yValue * yValueToFreqMultiplier;
 
         cableValue.SetGlobalValue(rtpcValue);
-    }
+    }*/
 }
