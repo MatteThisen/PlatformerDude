@@ -4,7 +4,7 @@ public class IdleState : EnemyState
 {
 
     float idleStateSpeed = 3f;
-
+    float sightAngle = 120f;
     public IdleState(EnemyAI enemyAI) : base(enemyAI)
     {
     }
@@ -23,7 +23,7 @@ public class IdleState : EnemyState
     public override void UpdateState()
     {
         enemyAI.CheckForPlatformEdge();
-        if (enemyAI.CanSeePlayer())
+        if (enemyAI.CanSeePlayer(sightAngle))
         {
             enemyAI.SetState(EnemyAI.EnemyStateType.Chase);
         }

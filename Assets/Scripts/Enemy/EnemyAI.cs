@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using static UnityEngine.UI.Image;
 
 
 
@@ -11,10 +12,10 @@ public class EnemyAI : MonoBehaviour
     [Header("Player Detection")]
     public Transform player;
     public float sightRange = 8f;
-    public float sightAngle = 90f;   // degrees, total cone width
     public float searchTimeout = 4f;    // seconds before giving up and going Idle
     PlayerMovement playerMovement;
     List<Collider2D> lastSeenPlayerPlatforms;
+    bool canSeePlayerLastFrame = false;
 
     [Header("Platform Detection")]
     public string platformLayerName = "groundLayer";
@@ -85,36 +86,39 @@ public class EnemyAI : MonoBehaviour
         };
 
         _current.EnterState();
-        Debug.Log($"[EnemyAI] → {type}");
+        //Debug.Log($"[EnemyAI] → {type}");
     }
 
     // How long we've been in the current state
     public float TimeInState => Time.time - StateEnterTime;
 
 
-    public bool CanSeePlayer()
+    public bool CanSeePlayer(float sightAngle)
     {
         if (player == null) return false;
 
         // If player is outside of sight range, no need to check angle or line of sight
         Vector2 toPlayer = player.position - transform.position;
-        //Debug.Log($"[EnemyAI] Checking sight: Player at {player.position}, Enemy at {transform.position}, ToPlayer vector: {toPlayer}, Magnitude: {toPlayer.magnitude}");
+        //Debug.Log($"[Enemy] {gameObject.name} Checking sight: Player at {player.position}, Enemy at {transform.position}, ToPlayer vector: {toPlayer}, Magnitude: {toPlayer.magnitude}");
         if (toPlayer.magnitude > sightRange) return false;
 
         // Facing direction based on velocity
         Vector2 facing = rb.linearVelocity.normalized;
-        //Debug.Log($"[EnemyAI] Facing direction: {facing}");
+        //Debug.Log($"[Enemy] {gameObject.name} Facing direction: {facing}");
         if (facing == Vector2.zero) facing = Vector2.right;
 
         // Angle check to see if player is within sight cone
         float angle = Vector2.Angle(facing, toPlayer);
-        //Debug.Log($"[EnemyAI] Angle to player: {angle} degrees (Sight cone: {sightAngle} degrees)");
+       //Debug.Log($"[Enemy] {gameObject.name} Angle to player: {angle} degrees (Sight cone: {sightAngle} degrees)");
         if (angle > sightAngle * 0.5f) return false;
 
         // Line-of-sight check
         var hit = Physics2D.Raycast(transform.position, toPlayer.normalized, sightRange, LayerMask.GetMask("Player", "groundLayer"));
-        //Debug.Log($"[EnemyAI] Line-.Raycast hit: {(hit.collider != null ? hit.collider.name : "None")} (Layer: {(hit.collider != null ? LayerMask.LayerToName(hit.collider.gameObject.layer) : "N/A")})");
-        return hit.collider != null && hit.collider.CompareTag("Player");
+        //Debug.Log($"[Enemy] {gameObject.name} Line-.Raycast hit: {(hit.collider != null ? hit.collider.name : "None")} (Layer: {(hit.collider != null ? LayerMask.LayerToName(hit.collider.gameObject.layer) : "N/A")})");
+
+        canSeePlayerLastFrame = hit.collider != null && hit.collider.CompareTag("Player");
+
+        return canSeePlayerLastFrame;
     }
 
     public void SetLastSeenPlayerTime() => timeWhenPlayerSeenLast = Time.time;
@@ -135,7 +139,7 @@ public class EnemyAI : MonoBehaviour
         Vector2 direction = Vector2.down;
         Vector2 movementDirection;
 
-        if (CurrentStateType == EnemyStateType.Chase && player != null && currentPlatform == lastSeenPlayerPlatforms[lastSeenPlayerPlatforms.Count - 1])
+        if (CurrentStateType == EnemyStateType.Chase && player != null && canSeePlayerLastFrame)
         {
             Vector2 toPlayer = player.position - transform.position;
 
@@ -162,8 +166,8 @@ public class EnemyAI : MonoBehaviour
         Vector2 locationForRaycast = origin + (movementDirection * bounds.extents.x);
 
         var hit = Physics2D.Raycast(locationForRaycast, direction, distance, platformLayer);
-        //Debug.Log($"[EnemyAI] Raycast hit: {(hit.collider != null ? hit.collider.name : "None")} (Layer: {(hit.collider != null ? LayerMask.LayerToName(hit.collider.gameObject.layer) : "N/A")})");
-        //Debug.Log($"Current platform: {(currentPlatform != null ? currentPlatform.name : "None")}");
+        //Debug.Log($"[Enemy] {gameObject.name} Raycast hit: {(hit.collider != null ? hit.collider.name : "None")} (Layer: {(hit.collider != null ? LayerMask.LayerToName(hit.collider.gameObject.layer) : "N/A")})");
+        //Debug.Log($"[Enemy] {gameObject.name} Current platform: {(currentPlatform != null ? currentPlatform.name : "None")}");
         //Debug.Log("hit collider layer " + hit.collider.gameObject.layer);
         //Debug.Log("Platform layer " + LayerMask.NameToLayer(platformLayerName));
 
@@ -183,7 +187,7 @@ public class EnemyAI : MonoBehaviour
             }
             else
             {
-                currentPlatform = hit.collider;
+                //currentPlatform = hit.collider;
                 MoveAlongPlatform();
             }
         }
@@ -250,8 +254,8 @@ public class EnemyAI : MonoBehaviour
     private RaycastHit2D FindTargetPlatform(List<RaycastHit2D> jumpHits, EnemyStateType currentState)
     {
         RaycastHit2D bestHit = jumpHits[0];
-        //Debug.Log($"[EnemyAI] Evaluating {jumpHits.Count} jump targets in state {CurrentStateType}");
-        //Debug.Log($"[EnemyAI] hit platforms: {string.Join(", ", jumpHits.ConvertAll(h => h.collider.name))}");
+        //Debug.Log($"[Enemy] {gameObject.name} Evaluating {jumpHits.Count} jump targets in state {CurrentStateType}");
+        //Debug.Log($"[Enemy] {gameObject.name} hit platforms: {string.Join(", ", jumpHits.ConvertAll(h => h.collider.name))}");
 
 
         switch (currentState)
@@ -325,6 +329,11 @@ public class EnemyAI : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         enemyCollider.isTrigger = false;
         isJumping = false;
+
+        // do a quick raycast down to update current platform
+        float distance = 1f;
+        var hit = Physics2D.Raycast(transform.position, Vector2.down, distance, platformLayer);
+        currentPlatform = (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer(platformLayerName)) ? hit.collider : null;
     }
 
     private float CalculateJumpDuration(Vector2 start, Vector2 target)

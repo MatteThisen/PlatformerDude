@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.Timeline;
 
 public class ChaseState : EnemyState
 {
     
     float chaseStateSpeed = 5f;
-    float timeBeforeGivingUpChase = 10f;
+    float timeBeforeGivingUpChase = 5f;
+    float sightAngle = 360f;
 
     public ChaseState(EnemyAI enemyAI) : base(enemyAI)
     {
@@ -26,7 +28,7 @@ public class ChaseState : EnemyState
     {
         enemyAI.SetLastSeenPlayerPlatforms();
 
-        if (enemyAI.CanSeePlayer())
+        if (enemyAI.CanSeePlayer(sightAngle))
         {
             enemyAI.SetLastSeenPlayerTime();
             enemyAI.CheckForPlatformEdge();

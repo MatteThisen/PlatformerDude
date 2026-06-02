@@ -5,7 +5,8 @@ public class SearchState : EnemyState
 {
 
     float searchStateSpeed = 4f;
-    float timeBeforeGivingUpSearch = 10f;
+    float timeBeforeGivingUpSearch = 5f;
+    float sightAngle = 180f;
 
     public SearchState(EnemyAI enemyAI) : base(enemyAI)
     {
@@ -25,7 +26,7 @@ public class SearchState : EnemyState
 
     public override void UpdateState()
     {
-        if (enemyAI.CanSeePlayer())
+        if (enemyAI.CanSeePlayer(sightAngle))
         {
             enemyAI.SetState(EnemyAI.EnemyStateType.Chase);
         }
