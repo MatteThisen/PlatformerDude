@@ -1,7 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.Splines;
 using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 using static UnityEngine.UI.Image;
@@ -55,6 +57,8 @@ public class PlayerMovement : MonoBehaviour
     private SplineContainer currentUpSpline;
     private SplineContainer currentDownSpline;
 
+    private bool isDead = false;
+
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -96,21 +100,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        //isGrounded = Physics2D.OverlapCircle(transform.position, groundCheckRadius, groundLayer);
 
         moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
-
-        /*// If the player is on a spline, update the hook position and check for disconnect conditions
-        if (currentHookState != HookState.None)
-        {
-
-            rb.gravityScale = 0;
-
-            Vector2 playerVelocity = rb.linearVelocity;
-
-            HookUpdater();
-
-        }*/
 
         if (playerInput.actions["HookUp"].WasPressedThisFrame())
         {
@@ -167,6 +158,8 @@ public class PlayerMovement : MonoBehaviour
 
     void ApplyMovement()
     {
+        if (isDead) return;
+        
         if (moveInput.x != 0)
         {
             float targetSpeed = moveInput.x * maxSpeed;
@@ -451,6 +444,35 @@ public class PlayerMovement : MonoBehaviour
         }
         Debug.Log($"Current traversed platforms: {string.Join(", ", traversedPlatforms.ConvertAll(p => p.name))}");
 
+    }
+
+
+    IEnumerator Die()
+    {
+        GetComponent<Collider2D>().enabled = false;
+        spriteRenderer.flipY = true;
+        rb.linearVelocity = new Vector2(0, 5);
+        Debug.Log("Player has died.");
+
+        yield return new WaitForSeconds(2f);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("KillZone"))
+        {
+            StartCoroutine(Die());
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("KillZone"))
+        {
+            StartCoroutine(Die());
+        }
     }
 
 }

@@ -1,8 +1,6 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -22,7 +20,7 @@ public class EnemyAI : MonoBehaviour
     public string platformLayerName = "groundLayer";
     public LayerMask platformLayer;
     public float detectionRadius = 5f;
-    public int rayCount = 25; // Number of rays in the half-circle
+    public int rayCount = 10; // Number of rays in the half-circle
     private Collider2D currentPlatform;
     private bool isJumping = false;
 
@@ -59,6 +57,17 @@ public class EnemyAI : MonoBehaviour
     {
         _current?.UpdateState();
 
+        if (directionX == -1 && !isSpriteFlipped)
+        {
+            spriteRenderer.flipX = true;
+            isSpriteFlipped = true;
+        }
+        else if (directionX == 1 && isSpriteFlipped)
+        {
+            spriteRenderer.flipX = false;
+            isSpriteFlipped = false;
+        }
+
     }
 
     public void SetState(EnemyStateType type)
@@ -93,7 +102,7 @@ public class EnemyAI : MonoBehaviour
         if (toPlayer.magnitude > sightRange) return false;
 
         // Facing direction based on velocity
-        Vector2 facing = GetComponent<Rigidbody2D>().linearVelocity.normalized;
+        Vector2 facing = rb.linearVelocity.normalized;
         //Debug.Log($"[EnemyAI] Facing direction: {facing}");
         if (facing == Vector2.zero) facing = Vector2.right;
 
@@ -103,7 +112,7 @@ public class EnemyAI : MonoBehaviour
         if (angle > sightAngle * 0.5f) return false;
 
         // Line-of-sight check
-        var hit = Physics2D.Raycast(transform.position, toPlayer.normalized, sightRange, LayerMask.GetMask("Default", "groundLayer"));
+        var hit = Physics2D.Raycast(transform.position, toPlayer.normalized, sightRange, LayerMask.GetMask("Player", "groundLayer"));
         //Debug.Log($"[EnemyAI] Line-.Raycast hit: {(hit.collider != null ? hit.collider.name : "None")} (Layer: {(hit.collider != null ? LayerMask.LayerToName(hit.collider.gameObject.layer) : "N/A")})");
         return hit.collider != null && hit.collider.CompareTag("Player");
     }
@@ -145,10 +154,7 @@ public class EnemyAI : MonoBehaviour
         else
         { 
             movementDirection = new Vector2(directionX, 0).normalized;
-        } 
-
-        
-        
+        }
         
         float distance = 1f; // Adjust as needed
         var bounds = spriteRenderer.bounds;
@@ -168,9 +174,6 @@ public class EnemyAI : MonoBehaviour
             currentPlatform = hit.collider;
         } else if (hit.collider == null)
         {
-            // No ground ahead, reverse direction
-            isSpriteFlipped = !isSpriteFlipped;
-            spriteRenderer.flipX = isSpriteFlipped;
 
             List<RaycastHit2D> jumpHits = CheckForJump(movementDirection);
             if (jumpHits.Count > 0)
@@ -255,7 +258,7 @@ public class EnemyAI : MonoBehaviour
         {
             case EnemyStateType.Idle:
                 // In Idle, choose random platform to jump to
-                bestHit = jumpHits[UnityEngine.Random.Range(0, jumpHits.Count - 1)];
+                bestHit = jumpHits[UnityEngine.Random.Range(0, jumpHits.Count)];
                 break;
             default:
                 // In Search or Chase, prefer platforms that the player has recently been on
@@ -282,7 +285,7 @@ public class EnemyAI : MonoBehaviour
                 }
                 else
                 {
-                    bestHit = jumpHits[UnityEngine.Random.Range(0, jumpHits.Count - 1)];
+                    bestHit = jumpHits[UnityEngine.Random.Range(0, jumpHits.Count)];
                 }
 
                 break;
@@ -297,7 +300,7 @@ public class EnemyAI : MonoBehaviour
         Vector2 start = transform.position;
         float duration = CalculateJumpDuration(start, target);
         float elapsed = 0f;
-        enemyCollider.enabled = false;
+        enemyCollider.isTrigger = true;
 
         // Disable normal movement while jumping
         rb.gravityScale = 0f;
@@ -320,7 +323,7 @@ public class EnemyAI : MonoBehaviour
         rb.MovePosition(target);
         rb.gravityScale = 1f;
         rb.linearVelocity = Vector2.zero;
-        enemyCollider.enabled = true;
+        enemyCollider.isTrigger = false;
         isJumping = false;
     }
 

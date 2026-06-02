@@ -4,8 +4,8 @@ using UnityEngine.Rendering;
 public class SearchState : EnemyState
 {
 
-    bool hasCheckedLastSeenPosition = false;
     float searchStateSpeed = 4f;
+    float timeBeforeGivingUpSearch = 10f;
 
     public SearchState(EnemyAI enemyAI) : base(enemyAI)
     {
@@ -29,7 +29,7 @@ public class SearchState : EnemyState
         {
             enemyAI.SetState(EnemyAI.EnemyStateType.Chase);
         }
-        else if (enemyAI.TimeInState > 5f)
+        else if (enemyAI.TimeInState > timeBeforeGivingUpSearch)
         {
             enemyAI.SetState(EnemyAI.EnemyStateType.Idle);
         }

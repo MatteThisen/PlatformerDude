@@ -4,6 +4,7 @@ public class ChaseState : EnemyState
 {
     
     float chaseStateSpeed = 5f;
+    float timeBeforeGivingUpChase = 10f;
 
     public ChaseState(EnemyAI enemyAI) : base(enemyAI)
     {
@@ -30,7 +31,7 @@ public class ChaseState : EnemyState
             enemyAI.SetLastSeenPlayerTime();
             enemyAI.CheckForPlatformEdge();
         }
-        else if (Time.time - enemyAI.timeWhenPlayerSeenLast > 5f)
+        else if (Time.time - enemyAI.timeWhenPlayerSeenLast > timeBeforeGivingUpChase)
         {
             enemyAI.SetState(EnemyAI.EnemyStateType.Search);
         }

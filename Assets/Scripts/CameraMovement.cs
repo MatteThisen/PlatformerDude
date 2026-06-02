@@ -3,12 +3,15 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private Transform playerObject; // The target the camera will follow
-    private Vector3 offset = new Vector3(3, 3, -10); // The offset from the target position
+    [SerializeField] private float cameraOffsetZ = 0f;
+    [SerializeField] private float cameraSize;
+    private Vector3 offset; // The offset from the target position
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        offset = new Vector3(3, 3, cameraOffsetZ);
+        GetComponent<Camera>().orthographicSize = cameraSize;
     }
 
     // Update is called once per frame

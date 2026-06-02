@@ -601,7 +601,7 @@ GameObject:
   - component: {fileID: 5863645266326829362}
   m_Layer: 0
   m_Name: PlayerObject
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -816,7 +816,7 @@ GameObject:
   - component: {fileID: 9127328389975464547}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -942,11 +942,11 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  groundCheckRadius: 0.7
+  groundCheckDistance: 1
+  traversedPlatforms: []
   splineStartCheckRadius: 2
   splineRaycastRadius: 1
   splineExitVelocity: {x: 0, y: 0}
-  currentHookState: 0
   hookUpObject: {fileID: 2879084684531150798}
   hookDownObject: {fileID: 5684589821751813151}
 --- !u!61 &6915082240051601577
