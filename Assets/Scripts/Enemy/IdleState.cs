@@ -27,6 +27,5 @@ public class IdleState : EnemyState
         {
             enemyAI.SetState(EnemyAI.EnemyStateType.Chase);
         }
-        //Debug.Log($"[IdleState] Can see player: {canSeePlayer}");
     }
 }

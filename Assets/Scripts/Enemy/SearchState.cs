@@ -21,7 +21,6 @@ public class SearchState : EnemyState
 
     public override void ExitState()
     {
-
     }
 
     public override void UpdateState()
